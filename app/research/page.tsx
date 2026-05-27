@@ -9,6 +9,12 @@ export const metadata: Metadata = {
     "Indsec research — weekly stock recommendations, sector deep-dives, IPO notes, earnings previews and a daily market wrap, with a quality-over-quantity coverage philosophy.",
 };
 
+/* Real Indsec destinations — research reports sit behind a client login. */
+const RESEARCH_PORTAL = "https://www.indsec.co.in/research-details";
+const RESEARCH_DISCLOSURES =
+  "https://www.indsec.co.in/researchdisclaimeranddisclosures";
+const RESEARCH_QUERY_EMAIL = "query_research@indsec.co.in";
+
 const REPORTS = [
   { tag: "Daily", title: "Market Wrap", date: "Today", blurb: "Closing levels, sector flows and the trades that moved the tape." },
   { tag: "Weekly", title: "Stock Recommendations", date: "This week", blurb: "Top high-conviction long and tactical ideas with target levels." },
@@ -88,7 +94,14 @@ export default function ResearchPage() {
                   <h3 className="title-h4" style={{ color: "var(--color-navy-900)", textAlign: "left", marginBottom: 4 }}>{r.title}</h3>
                   <p className="fs-12 muted mb-3">{r.date}</p>
                   <p className="fs-14" style={{ marginBottom: 16 }}>{r.blurb}</p>
-                  <Link href="#" className="btn btn--outline-crimson btn--sm">Request access</Link>
+                  <a
+                    href={RESEARCH_PORTAL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn btn--outline-crimson btn--sm"
+                  >
+                    Read on portal ↗
+                  </a>
                 </div>
               </article>
             ))}
@@ -101,12 +114,26 @@ export default function ResearchPage() {
         <div className="container">
           <SectionHeading
             title="Access Research"
-            lead="Institutional clients receive research via secure email distribution and our analyst portal. Get in touch to be added to the distribution."
+            lead="Existing clients read the full library on the Indsec research portal. New institutional clients can request to be added to our secure distribution."
             withRule
           />
-          <div className="text-center">
-            <Link href="/contact" className="btn btn--crimson">Request Distribution Access</Link>
+          <div className="btn-row" style={{ justifyContent: "center" }}>
+            <a
+              href={RESEARCH_PORTAL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn btn--crimson"
+            >
+              Open Research Portal ↗
+            </a>
+            <Link href="/contact" className="btn btn--outline-crimson">
+              Request Distribution Access
+            </Link>
           </div>
+          <p className="fs-14 muted text-center" style={{ marginTop: 16 }}>
+            Research queries:{" "}
+            <a href={`mailto:${RESEARCH_QUERY_EMAIL}`}>{RESEARCH_QUERY_EMAIL}</a>
+          </p>
         </div>
       </section>
 
@@ -121,7 +148,14 @@ export default function ResearchPage() {
                 Every Indsec research note carries the analyst's
                 certifications and the firm's conflict-of-interest disclosures
                 per SEBI regulations.{" "}
-                <Link href="/investor-relations#disclosures">View full disclosures →</Link>
+                <a
+                  href={RESEARCH_DISCLOSURES}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Research Disclaimer &amp; Disclosures ↗
+                </a>{" "}
+                · <Link href="/investor-relations#disclosures">All disclosures →</Link>
               </p>
             </div>
           </div>

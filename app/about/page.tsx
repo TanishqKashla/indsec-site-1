@@ -10,24 +10,34 @@ export const metadata: Metadata = {
 
 const LEADERS = [
   {
-    name: "Leadership One",
+    name: "Nandkishore Gupta",
     role: "Managing Director",
-    bio: "20+ years across institutional equities. Previously led India research at a global investment bank; sector specialist in financials and industrials.",
+    qual: "FCA · B.Com (Hons)",
+    bio: "A commerce graduate from the University of Mumbai and a Fellow Member of the ICAI. Associated with Indsec since June 1994 and Managing Director since July 2000, he brings over four decades of experience in the capital markets.",
   },
   {
-    name: "Leadership Two",
-    role: "Head of Institutional Sales",
-    bio: "Sales career spanning FIIs, DIIs and large family offices. Known for high-touch coverage of long-only and event-driven investors.",
+    name: "Maya Gandhi",
+    role: "Whole-time Director",
+    qual: "Operations & Surveillance",
+    bio: "With Indsec since September 1994, Maya oversees key operations and brings over three decades in the capital markets — including five years in the Inspection & Surveillance Department of BSE Limited.",
   },
   {
-    name: "Leadership Three",
-    role: "Head of Research",
-    bio: "Award-winning analyst with a quality-over-quantity coverage philosophy. Anchors Indsec's sector deep-dives and macro outlook.",
+    name: "Diamond Dand",
+    role: "Whole-time Director & CFO",
+    qual: "B.Com · ACA",
+    bio: "A qualified Chartered Accountant with more than two decades in the capital markets. With Indsec since October 2007, he leads the Finance and Compliance functions, having previously worked with reputed chartered accountancy firms.",
   },
   {
-    name: "Leadership Four",
-    role: "Head of Family Office",
-    bio: "Chartered Accountant and trust law specialist; advises promoter families on succession, settlements and cross-border investment.",
+    name: "Tushar Nandkishore Gupta",
+    role: "Whole-time Director",
+    qual: "MBA, Wharton · B.Sc, Babson",
+    bio: "An MBA from the Wharton School (UPenn) and a Bachelor's in Business Management from Babson College, USA. Previously with Amazon, Boston Scientific and EY LLP; appointed Whole-time Director in March 2026.",
+  },
+  {
+    name: "Darshita Shah",
+    role: "Independent Director",
+    qual: "B.Com · ACS · LL.B",
+    bio: "A law graduate from the University of Mumbai and an associate member of the ICSI. She has served as an Independent Director on the Indsec board since May 2024.",
   },
 ];
 
@@ -108,23 +118,24 @@ export default function AboutPage() {
       <section className="section section--cream" id="team">
         <div className="container">
           <SectionHeading
-            title="Leadership Team"
-            lead="Operators and analysts with deep credibility markers — prior firms, sector ownership, and decades of cycle-tested experience."
+            title="Board of Directors"
+            lead="A board with decades of cycle-tested experience across broking, finance, compliance and capital markets."
             withRule
           />
-          <div className="grid grid--4">
+          <div className="grid grid--3">
             {LEADERS.map((p) => (
               <article key={p.name} className="card">
                 <div
                   className="card__media"
                   aria-hidden="true"
-                  style={{ background: "linear-gradient(135deg, #1B2A5E 0%, #9C1B1F 100%)", color: "#fff", fontSize: 48 }}
+                  style={{ background: "linear-gradient(135deg, #1B2A5E 0%, #9C1B1F 100%)", color: "#fff", fontSize: 40, aspectRatio: "16 / 9" }}
                 >
-                  {p.name.split(" ").map((w) => w[0]).join("")}
+                  {p.name.split(" ").map((w) => w[0]).join("").slice(0, 3)}
                 </div>
                 <div className="card__body">
-                  <h3 className="title-h4" style={{ textAlign: "center", color: "var(--color-navy-900)" }}>{p.name}</h3>
-                  <p className="fs-12 muted text-center mb-3" style={{ textTransform: "uppercase", letterSpacing: 1 }}>{p.role}</p>
+                  <h3 className="title-h4" style={{ textAlign: "center", color: "var(--color-navy-900)", marginBottom: 2 }}>{p.name}</h3>
+                  <p className="fs-12 text-center" style={{ color: "var(--color-crimson-600)", fontWeight: 600, textTransform: "uppercase", letterSpacing: 1, marginBottom: 2 }}>{p.role}</p>
+                  <p className="fs-12 muted text-center mb-3">{p.qual}</p>
                   <p className="fs-14" style={{ color: "var(--color-text)" }}>{p.bio}</p>
                 </div>
               </article>

@@ -183,7 +183,13 @@ export default function LinesOfBusinessPage() {
           />
           <div className="grid grid--3">
             <article className="pillar">
-              <span className="pillar__icon" aria-hidden="true">◧</span>
+              <span className="pillar__icon" aria-hidden="true">
+                {/* magnifying glass — single research engine */}
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <circle cx="11" cy="11" r="7" />
+                  <path d="m21 21-4.3-4.3" />
+                </svg>
+              </span>
               <h3 className="pillar__title">Shared Research Engine</h3>
               <p className="pillar__text">
                 A single high-conviction view feeds institutional clients,
@@ -192,7 +198,12 @@ export default function LinesOfBusinessPage() {
               </p>
             </article>
             <article className="pillar">
-              <span className="pillar__icon" aria-hidden="true">◑</span>
+              <span className="pillar__icon" aria-hidden="true">
+                {/* lightning bolt — speed of the execution desk */}
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M13 2 4 14h7l-2 8 9-12h-7l2-8Z" />
+                </svg>
+              </span>
               <h3 className="pillar__title">One Execution Desk</h3>
               <p className="pillar__text">
                 Institutional-grade dealing capability available to every
@@ -200,7 +211,13 @@ export default function LinesOfBusinessPage() {
               </p>
             </article>
             <article className="pillar">
-              <span className="pillar__icon" aria-hidden="true">⚖</span>
+              <span className="pillar__icon" aria-hidden="true">
+                {/* lock — ring-fenced information barriers */}
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <rect x="4" y="11" width="16" height="10" rx="2" />
+                  <path d="M8 11V7a4 4 0 0 1 8 0v4" />
+                </svg>
+              </span>
               <h3 className="pillar__title">Information Barriers</h3>
               <p className="pillar__text">
                 Strict separation between research, broking and family

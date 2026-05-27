@@ -74,20 +74,27 @@ export default function GiftCityPage() {
       {/* How to start */}
       <section className="section section--cream">
         <div className="container">
-          <SectionHeading title="How to Get Started" withRule />
-          <div className="grid grid--4">
-            {[
-              { n: "1", t: "Eligibility", d: "We confirm jurisdiction, residency status and source-of-funds requirements." },
-              { n: "2", t: "Account Setup", d: "Open the appropriate GIFT City / PMS account with documentation walk-through." },
-              { n: "3", t: "Funding", d: "Inward remittance via designated banking partners; FX and custody arranged." },
-              { n: "4", t: "Invest", d: "Allocate to PMS strategies or direct equity through the Indsec institutional desk." },
-            ].map((s) => (
-              <article key={s.n} className="pillar">
-                <span className="pillar__icon" aria-hidden="true">{s.n}</span>
-                <h3 className="pillar__title">{s.t}</h3>
-                <p className="pillar__text">{s.d}</p>
-              </article>
-            ))}
+          <SectionHeading
+            title="How to Get Started"
+            lead="Four guided steps — from eligibility to your first allocation."
+            withRule
+          />
+          <div className="process">
+            <div className="process__track" aria-hidden="true" />
+            <ol className="process__steps">
+              {[
+                { n: "1", t: "Eligibility", d: "We confirm jurisdiction, residency status and source-of-funds requirements." },
+                { n: "2", t: "Account Setup", d: "Open the appropriate GIFT City / PMS account with a documentation walk-through." },
+                { n: "3", t: "Funding", d: "Inward remittance via designated banking partners; FX and custody arranged." },
+                { n: "4", t: "Invest", d: "Allocate to PMS strategies or direct equity through the Indsec institutional desk." },
+              ].map((s) => (
+                <li key={s.n} className="process__step">
+                  <span className="process__num" aria-hidden="true">{s.n}</span>
+                  <h3 className="process__title">{s.t}</h3>
+                  <p className="process__desc">{s.d}</p>
+                </li>
+              ))}
+            </ol>
           </div>
         </div>
       </section>
