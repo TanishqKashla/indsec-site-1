@@ -59,7 +59,7 @@ export function Footer() {
         <div className="footer__top">
           {/* Brand */}
           <div className="footer__brand">
-            <Logo mode="light" size={56} />
+            <Logo mode="light" size={76} />
             <p className="footer__tagline">
               Insight drives performance. Execution builds trust. Research-led
               institutional broking, family office and GIFT City access — under
