@@ -36,8 +36,8 @@ export default function ResearchPage() {
         <div className="container" style={{ maxWidth: 920 }}>
           <p className="lead text-center">
             Indsec research is built for institutional decision-making. We
-            cover the sectors that move portfolios — deeply — and skip the
-            ones that don't. Every note is back-stopped by primary channel
+            cover the sectors that move portfolios -i deeply. Every note is
+            back-stopped by primary channel
             checks, management access and our trading desk's market read.
           </p>
         </div>

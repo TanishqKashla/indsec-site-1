@@ -234,7 +234,13 @@ export default function HomePage() {
           </p>
           <div className="btn-row" style={{ justifyContent: "center" }}>
             <Link href="/contact" className="btn btn--white">Speak to Our Desk</Link>
-            <Link href="/research" className="btn btn--ghost-white">Access Research</Link>
+            <Link
+              href="/research"
+              className="btn btn--ghost-white"
+              style={{ borderRadius: "var(--radius-md)", padding: "8px 18px", fontSize: "var(--fs-16)", textTransform: "none", letterSpacing: "normal" }}
+            >
+              Access Research
+            </Link>
           </div>
         </div>
       </section>

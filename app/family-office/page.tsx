@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { PageHero } from "@/components/PageHero";
 import { SectionHeading } from "@/components/SectionHeading";
+import { RevealCard } from "@/components/RevealCard";
 
 export const metadata: Metadata = {
   title: "Family Office Solutions",
@@ -12,6 +13,7 @@ export const metadata: Metadata = {
 const GROUPS = [
   {
     title: "Estate & Succession",
+    image: "/whatwedo1.jpg",
     items: [
       "Succession planning",
       "Inheritance tax planning",
@@ -23,6 +25,7 @@ const GROUPS = [
   },
   {
     title: "Wealth & Investments",
+    image: "/whatwedo2.jpg",
     items: [
       "Dilution of non-core family assets",
       "Identifying investment opportunities for family surplus funds",
@@ -32,6 +35,7 @@ const GROUPS = [
   },
   {
     title: "Cross-border & Regulatory",
+    image: "/whatwedo3.jpg",
     items: [
       "Assistance, Advisory and Support Services for NRIs / PIO / OCI including FEMA",
       "Regulatory and tax aspects for the above matters",
@@ -60,18 +64,16 @@ export default function FamilyOfficePage() {
         </div>
       </section>
 
-      {/* Groups of services */}
+      {/* Groups of services — image cards, details on hover / tap */}
       <section className="section section--band">
         <div className="container">
           <SectionHeading title="What We Do" withRule />
-          <div className="grid grid--3">
+          <p className="section__lead" style={{ marginTop: 0 }}>
+            Hover or tap each area to see what it covers.
+          </p>
+          <div className="reveal-grid">
             {GROUPS.map((g) => (
-              <article key={g.title} className="pillar">
-                <h3 className="pillar__title" style={{ color: "var(--color-navy-900)" }}>{g.title}</h3>
-                <ul className="list-crimson">
-                  {g.items.map((i) => <li key={i}>{i}</li>)}
-                </ul>
-              </article>
+              <RevealCard key={g.title} image={g.image} title={g.title} items={g.items} />
             ))}
           </div>
         </div>

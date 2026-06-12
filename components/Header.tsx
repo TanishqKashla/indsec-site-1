@@ -85,7 +85,7 @@ export function Header() {
     <nav className="navbar" aria-label="Primary">
       <div className="navbar__inner" ref={containerRef}>
         <Link href="/" className="navbar__brand" aria-label="Indsec home">
-          <Logo mode="light" size={38} />
+          <Logo mode="light" size={50} />
         </Link>
 
         <ul className="navbar__links" data-open={open}>

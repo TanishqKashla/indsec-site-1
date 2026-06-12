@@ -9,12 +9,30 @@ export const metadata: Metadata = {
     "High-conviction equity research, sales & trading, corporate access and capital markets support — institutional broking built on Insight, Integrity and Execution.",
 };
 
+const svcIcon = {
+  width: 24,
+  height: 24,
+  viewBox: "0 0 24 24",
+  fill: "none",
+  stroke: "currentColor",
+  strokeWidth: 1.8,
+  strokeLinecap: "round" as const,
+  strokeLinejoin: "round" as const,
+};
+
 const SERVICES = [
   {
     title: "Equity Research",
     blurb: "Actionable insights across sectors with high-conviction ideas.",
+    // magnifier over research
+    icon: (
+      <svg {...svcIcon}>
+        <circle cx="11" cy="11" r="7" />
+        <line x1="21" y1="21" x2="16.65" y2="16.65" />
+        <path d="M8 12.5 10.5 10l2 2 3-3.5" />
+      </svg>
+    ),
     items: [
-      "High-conviction stock ideas",
       "Sector deep dives (India-focused themes)",
       "Earnings intelligence",
       "Management access-backed insights",
@@ -23,6 +41,15 @@ const SERVICES = [
   {
     title: "Institutional Sales",
     blurb: "Indsec's sales team acts as an extension of your investment desk.",
+    // people / relationship
+    icon: (
+      <svg {...svcIcon}>
+        <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+        <circle cx="9" cy="7" r="4" />
+        <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
+        <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+      </svg>
+    ),
     items: [
       "Market color & positioning insights",
       "Portfolio strategy discussions",
@@ -32,6 +59,12 @@ const SERVICES = [
   {
     title: "Trading & Execution",
     blurb: "Built for speed, discretion, and reliability.",
+    // speed / execution
+    icon: (
+      <svg {...svcIcon}>
+        <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+      </svg>
+    ),
     items: [
       "Block & bulk deals",
       "High-touch execution",
@@ -42,15 +75,29 @@ const SERVICES = [
   {
     title: "Corporate Access",
     blurb: "Direct engagement with management teams.",
+    // building / corporate
+    icon: (
+      <svg {...svcIcon}>
+        <rect x="4" y="3" width="16" height="18" rx="2" />
+        <path d="M9 21v-4h6v4" />
+        <path d="M8 7h.01M12 7h.01M16 7h.01M8 11h.01M12 11h.01M16 11h.01" />
+      </svg>
+    ),
     items: [
       "Curated 1x1 management meetings",
       "Field visits and channel checks",
-      "Thematic roadshows",
     ],
   },
   {
     title: "Capital Markets",
     blurb: "IPOs, QIPs, and block deals.",
+    // trending up
+    icon: (
+      <svg {...svcIcon}>
+        <polyline points="22 7 13.5 15.5 8.5 10.5 2 17" />
+        <polyline points="16 7 22 7 22 13" />
+      </svg>
+    ),
     items: [
       "IPO participation",
       "QIPs & placements",
@@ -163,12 +210,12 @@ const RESEARCH_EDGE = [
 ];
 
 const CLIENTS = [
-  "Foreign Institutional Investors (FIIs)",
-  "Domestic Institutional Investors (DIIs)",
-  "Mutual Funds",
-  "Alternative Investment Funds (AIFs)",
-  "Portfolio Management Services (PMS)",
-  "Foreign Portfolio Investors (FPIs)",
+  { code: "FII", label: "Foreign Institutional Investors" },
+  { code: "DII", label: "Domestic Institutional Investors" },
+  { code: "MF", label: "Mutual Funds" },
+  { code: "AIF", label: "Alternative Investment Funds" },
+  { code: "PMS", label: "Portfolio Management Services" },
+  { code: "FPI", label: "Foreign Portfolio Investors" },
 ];
 
 export default function InstitutionalBrokingPage() {
@@ -200,7 +247,10 @@ export default function InstitutionalBrokingPage() {
           <div className="svc-grid">
             {SERVICES.map((s) => (
               <article key={s.title} className="column-card">
-                <h3 className="column-card__title">{s.title}</h3>
+                <div className="column-card__head">
+                  <span className="column-card__icon" aria-hidden="true">{s.icon}</span>
+                  <h3 className="column-card__title">{s.title}</h3>
+                </div>
                 <p className="fs-14" style={{ color: "var(--color-text)", marginBottom: 8 }}>{s.blurb}</p>
                 <ul className="column-card__list">
                   {s.items.map((i) => <li key={i}>{i}</li>)}
@@ -242,19 +292,18 @@ export default function InstitutionalBrokingPage() {
         </div>
       </section>
 
-      {/* Clients */}
-      <section className="section section--cream">
+      {/* Clients — badge pills on a geometric backdrop */}
+      <section className="section section--geo" style={{ paddingTop: 0, paddingBottom: 0 }}>
         <div className="container">
           <SectionHeading title="Clients We Serve" withRule />
-          <div className="grid grid--3">
+          <ul className="client-grid">
             {CLIENTS.map((c) => (
-              <article key={c} className="card">
-                <div className="card__body" style={{ padding: 20, textAlign: "center" }}>
-                  <h3 className="title-h4" style={{ color: "var(--color-navy-900)" }}>{c}</h3>
-                </div>
-              </article>
+              <li key={c.code} className="client-card">
+                <span className="client-card__badge" aria-hidden="true">{c.code}</span>
+                <span className="client-card__label">{c.label}</span>
+              </li>
             ))}
-          </div>
+          </ul>
         </div>
       </section>
 
