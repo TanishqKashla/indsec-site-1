@@ -1,18 +1,22 @@
-// Indsec logo — the official striped-globe mark (public/main-logo.png) shown on
-// a solid brand-red panel, so its transparent "white" background reads as red.
-// The PNG already contains the "Indsec" wordmark, so no separate text is drawn.
+// Indsec logo — the official white-background mark+wordmark (public/logo-white-bg.jpg)
+// rendered inside a rounded white panel so it stays crisp on the gradient navbar
+// and the dark footer. The image already contains the "INDSEC" wordmark, so no
+// separate text is drawn. The transparent-background variant is used as the favicon.
 
 import Image from "next/image";
-import mainLogo from "../public/main-logo.png";
+import whiteLogo from "../public/logo-white-bg.jpg";
+
+const RATIO = 1135 / 1386; // intrinsic width / height of the logo artwork
 
 type Props = {
   mode?: "light" | "dark"; // kept for API compatibility with existing callers
-  size?: number; // visual height of the red panel in px
+  size?: number; // visual height of the white panel in px
 };
 
-export function Logo({ size = 38 }: Props) {
-  const pad = Math.round(size * 0.14);
-  const inner = size - pad * 2;
+export function Logo({ size = 56 }: Props) {
+  const pad = Math.round(size * 0.08);
+  const innerH = size - pad * 2;
+  const innerW = Math.round(innerH * RATIO);
 
   return (
     <span
@@ -21,10 +25,10 @@ export function Logo({ size = 38 }: Props) {
         display: "inline-flex",
         alignItems: "center",
         justifyContent: "center",
-        background: "#FFFFFF", // white panel so the mark stays legible on the gradient navbar
-        borderRadius: Math.round(size * 0.18),
+        background: "#FFFFFF",
+        borderRadius: Math.round(size * 0.16),
         height: size,
-        width: size, // the mark is ~square (104×116)
+        width: innerW + pad * 2,
         boxSizing: "border-box",
         padding: pad,
         flexShrink: 0,
@@ -32,11 +36,11 @@ export function Logo({ size = 38 }: Props) {
       }}
     >
       <Image
-        src={mainLogo}
+        src={whiteLogo}
         alt="Indsec"
-        height={inner}
-        width={Math.round(inner * (104 / 116))}
-        style={{ height: inner, width: "auto", display: "block" }}
+        height={innerH}
+        width={innerW}
+        style={{ height: innerH, width: "auto", display: "block" }}
         priority
       />
     </span>
