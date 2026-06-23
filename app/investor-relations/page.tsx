@@ -13,7 +13,7 @@ const SITE = "https://www.indsec.co.in";
 
 type DocKind = "PDF" | "Page" | "Portal";
 
-const DISCLOSURES: { title: string; desc: string; href: string; kind: DocKind }[] = [
+const DISCLOSURES: { title: string; desc: string; href: string; kind: DocKind; size?: string }[] = [
   {
     title: "Corporate Disclosures",
     desc: "Statutory corporate disclosures available to Indsec clients via secure login.",
@@ -43,44 +43,62 @@ const DISCLOSURES: { title: string; desc: string; href: string; kind: DocKind }[
     desc: "Rights, responsibilities and service standards for broking clients.",
     href: `${SITE}/pdf/Investor%20Charter%20for%20Stock%20Brokers_Feb2025.pdf`,
     kind: "PDF",
+    size: "304 KB",
   },
   {
     title: "Investor Charter — Depository Participant",
     desc: "Rights, responsibilities and service standards for depository clients.",
     href: `${SITE}/pdf/Investor%20Charter%20for%20Depositary%20Participants_Sep2024.pdf`,
     kind: "PDF",
+    size: "415 KB",
   },
   {
     title: "Investor Charter — Research Analyst",
     desc: "Rights, responsibilities and service standards for research clients.",
     href: `${SITE}/pdf/Investor%20Charter%20for%20Research%20Analysts.pdf`,
     kind: "PDF",
+    size: "223 KB",
   },
   {
     title: "Investor Charter — PMS",
     desc: "Rights, responsibilities and service standards for PMS clients.",
     href: `${SITE}/pdf/Investor%20Charter%20in%20Respect%20of%20PMS.pdf`,
     kind: "PDF",
+    size: "268 KB",
   },
   {
     title: "Investor Complaints Data — Stock Broking",
     desc: "Monthly disclosure of complaints received against broking activities.",
     href: `${SITE}/pdf/Investor%20Complaints%20Data%20-%20Stock%20Broking%20Activities%20-%20Apr%202026.pdf`,
     kind: "PDF",
+    size: "148 KB",
   },
   {
     title: "Investor Complaints Data — Depository",
     desc: "Monthly disclosure of complaints received against depository activities.",
     href: `${SITE}/pdf/Investor%20Complaints%20Data%20-%20DP%20Activities%20-%20Apr%202026.pdf`,
     kind: "PDF",
+    size: "210 KB",
   },
   {
     title: "Investor Complaints Data — PMS",
     desc: "Monthly disclosure of complaints received against PMS activities.",
     href: `${SITE}/pdf/Investor%20Complaints%20Data%20-%20PMS%20-%20Apr%202026.pdf`,
     kind: "PDF",
+    size: "207 KB",
   },
 ];
+
+/* Accessible name for a disclosure link — declares the document, its file
+   size (PDFs) and that it opens in a new tab, satisfying WCAG G189 (file
+   size hint) and 3.2.2 (new-tab notice) without altering the visible UI. */
+function docLinkLabel(d: (typeof DISCLOSURES)[number]) {
+  if (d.kind === "PDF") {
+    const size = d.size ? `, ${d.size}` : "";
+    return `Download ${d.title} (PDF${size}) — opens in a new tab`;
+  }
+  return `Open ${d.title} — opens in a new tab`;
+}
 
 export default function InvestorRelationsPage() {
   return (
@@ -193,6 +211,7 @@ export default function InvestorRelationsPage() {
                       target="_blank"
                       rel="noopener noreferrer"
                       className="btn btn--outline-crimson btn--sm"
+                      aria-label={docLinkLabel(d)}
                     >
                       {d.kind === "PDF" ? "Download PDF ↗" : "Open ↗"}
                     </a>
