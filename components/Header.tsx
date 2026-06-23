@@ -123,14 +123,11 @@ export function Header() {
                   <div
                     className="navbar__menu"
                     data-open={expanded}
-                    role="menu"
-                    aria-label={item.label}
                   >
-                    <ul>
+                    <ul aria-label={item.label}>
                       {item.children!.map((c) => (
-                        <li key={c.href} role="none">
+                        <li key={c.href}>
                           <Link
-                            role="menuitem"
                             href={c.href}
                             className="navbar__menu-link"
                             onClick={() => {

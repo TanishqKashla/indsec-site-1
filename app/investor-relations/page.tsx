@@ -91,13 +91,15 @@ const DISCLOSURES: { title: string; desc: string; href: string; kind: DocKind; s
 
 /* Accessible name for a disclosure link — declares the document, its file
    size (PDFs) and that it opens in a new tab, satisfying WCAG G189 (file
-   size hint) and 3.2.2 (new-tab notice) without altering the visible UI. */
+   size hint) and 3.2.2 (new-tab notice) without altering the visible UI.
+   The label begins with the visible text ("Download PDF" / "Open") so it
+   also satisfies WCAG 2.5.3 (Label in Name). */
 function docLinkLabel(d: (typeof DISCLOSURES)[number]) {
   if (d.kind === "PDF") {
-    const size = d.size ? `, ${d.size}` : "";
-    return `Download ${d.title} (PDF${size}) — opens in a new tab`;
+    const size = d.size ? ` (${d.size})` : "";
+    return `Download PDF: ${d.title}${size}. Opens in a new tab.`;
   }
-  return `Open ${d.title} — opens in a new tab`;
+  return `Open: ${d.title}. Opens in a new tab.`;
 }
 
 export default function InvestorRelationsPage() {
@@ -213,7 +215,8 @@ export default function InvestorRelationsPage() {
                       className="btn btn--outline-crimson btn--sm"
                       aria-label={docLinkLabel(d)}
                     >
-                      {d.kind === "PDF" ? "Download PDF ↗" : "Open ↗"}
+                      {d.kind === "PDF" ? "Download PDF" : "Open"}{" "}
+                      <span aria-hidden="true">↗</span>
                     </a>
                   </div>
                 </div>
