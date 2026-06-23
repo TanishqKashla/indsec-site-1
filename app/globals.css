@@ -971,6 +971,44 @@ h2, .section-heading {
 .pillar__title { font: var(--fw-semibold) var(--fs-18)/var(--lh-18) var(--font-sans); color: var(--color-navy-900); margin: 0; }
 .pillar__text { font-size: var(--fs-14); line-height: 20px; color: var(--color-text); margin: 0; }
 
+/* image-backed pillar variant (see "What Sets Indsec Apart") */
+.pillar--image {
+  position: relative;
+  overflow: hidden;
+  border: none;
+  min-height: 280px;
+  justify-content: flex-end;
+  color: #FFFFFF;
+}
+.pillar--image .pillar__img {
+  z-index: 0;
+  transition: transform 400ms ease;
+}
+.pillar--image:hover .pillar__img { transform: scale(1.05); }
+.pillar__scrim {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(
+    180deg,
+    rgba(15, 23, 42, 0.15) 0%,
+    rgba(15, 23, 42, 0.55) 55%,
+    rgba(15, 23, 42, 0.88) 100%
+  );
+}
+/* keep the foreground content above image + scrim */
+.pillar--image > .pillar__icon,
+.pillar--image > .pillar__title,
+.pillar--image > .pillar__text { position: relative; z-index: 2; }
+.pillar--image .pillar__icon {
+  background: rgba(255, 255, 255, 0.18);
+  color: #FFFFFF;
+  -webkit-backdrop-filter: blur(2px);
+  backdrop-filter: blur(2px);
+}
+.pillar--image .pillar__title { color: #FFFFFF; }
+.pillar--image .pillar__text { color: rgba(255, 255, 255, 0.9); }
+
 /* ==========================================================================
    Lists / bullets (orange-style → crimson)
    ========================================================================== */
@@ -1463,6 +1501,16 @@ h2, .section-heading {
    Client logo grid ("Trusted by leading institutions")
    ========================================================================== */
 
+/* framed panel so the logo wall reads as one cohesive unit */
+.logo-section {
+  margin-top: 56px;
+  padding: 40px 32px 32px;
+  background: #FFFFFF;
+  border: 0.8px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-soft);
+}
+
 .logo-grid__kicker {
   text-align: center;
   text-transform: uppercase;
@@ -1470,7 +1518,17 @@ h2, .section-heading {
   font-size: var(--fs-12);
   font-weight: var(--fw-semibold);
   color: var(--color-crimson-600);
-  margin: 0 0 20px;
+  margin: 0 0 28px;
+}
+/* small centered accent rule under the kicker */
+.logo-grid__kicker::after {
+  content: "";
+  display: block;
+  width: 36px;
+  height: 2px;
+  margin: 12px auto 0;
+  background: var(--color-crimson-600);
+  border-radius: 2px;
 }
 
 .logo-grid {
@@ -1479,7 +1537,7 @@ h2, .section-heading {
   padding: 0;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 12px;
+  gap: 14px;
 }
 
 .logo-tile {
@@ -1487,12 +1545,12 @@ h2, .section-heading {
   align-items: center;
   justify-content: center;
   text-align: center;
-  min-height: 72px;
-  padding: 12px 16px;
+  min-height: 92px;
+  padding: 16px 20px;
   background: #FFFFFF;
-  border: 0.8px solid var(--color-border);
+  border: 0.8px solid var(--color-border-soft);
   border-radius: var(--radius-md);
-  transition: border-color 160ms ease, box-shadow 160ms ease, transform 160ms ease;
+  transition: border-color 160ms ease, box-shadow 160ms ease, transform 160ms ease, background 160ms ease;
 }
 .logo-tile span {
   font-weight: var(--fw-bold);
@@ -1504,14 +1562,39 @@ h2, .section-heading {
   filter: saturate(0);
   opacity: 0.85;
 }
+.logo-tile__img {
+  /* fixed box so every mark renders at a uniform size — small logos
+     scale up to fill, wide logos are bounded by width; object-fit keeps
+     aspect ratio either way */
+  width: 100%;
+  height: 56px;
+  max-width: 100%;
+  object-fit: contain;
+  /* logos shown in their own colours */
+  transition: transform 160ms ease;
+}
+/* softer navy tile for white / light logos that would vanish on white —
+   a gentle navy gradient keeps white marks legible without the harsh
+   flat block, and stays on-brand */
+.logo-tile--dark {
+  background: linear-gradient(150deg, var(--color-navy-600), var(--color-navy-800));
+  border-color: var(--color-navy-800);
+}
 .logo-tile:hover {
   border-color: var(--color-crimson-600);
   box-shadow: var(--shadow-soft);
   transform: translateY(-2px);
 }
+.logo-tile--dark:hover {
+  border-color: var(--color-navy-600);
+}
 .logo-tile:hover span { filter: none; opacity: 1; color: var(--color-crimson-600); }
+.logo-tile:hover .logo-tile__img { transform: scale(1.04); }
 
-@media (max-width: 991px) { .logo-grid { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 991px) {
+  .logo-grid { grid-template-columns: repeat(3, 1fr); }
+  .logo-section { padding: 32px 20px 24px; }
+}
 @media (max-width: 600px) { .logo-grid { grid-template-columns: repeat(2, 1fr); } }
 
 /* ==========================================================================
@@ -1526,8 +1609,8 @@ h2, .section-heading {
 /* the large arrow running through the steps */
 .process__track {
   position: absolute;
-  left: 11%;
-  right: 11%;
+  left: 10%;
+  right: 10%;
   top: 30px;            /* vertical centre of the 60px nodes */
   height: 6px;
   background: var(--color-crimson-600);
@@ -1550,11 +1633,18 @@ h2, .section-heading {
   margin: 0;
   padding: 0;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   gap: 16px;
+  align-items: start;
 }
 
-.process__step { text-align: center; padding: 0 8px; }
+.process__step {
+  text-align: center;
+  padding: 0 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
 .process__num {
   display: inline-flex;
@@ -1579,11 +1669,14 @@ h2, .section-heading {
 }
 .process__desc { font-size: var(--fs-14); line-height: 20px; color: var(--color-text); margin: 0; }
 
-/* phone: arrow turns vertical, steps stack */
-@media (max-width: 760px) {
+/* tablet / phone: arrow turns vertical, steps stack */
+@media (max-width: 900px) {
   .process__steps {
     grid-template-columns: 1fr;
     gap: 24px;
+  }
+  .process__step {
+    align-items: stretch;
   }
   .process__step {
     display: grid;

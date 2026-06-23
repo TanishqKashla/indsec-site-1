@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { SectionHeading } from "@/components/SectionHeading";
 import { LinesOfBusinessTabs } from "@/components/LinesOfBusinessTabs";
 
@@ -62,7 +63,9 @@ export default function HomePage() {
           <SectionHeading title="What Sets Indsec Apart" withRule />
 
           <div className="grid grid--4">
-            <article className="pillar">
+            <article className="pillar pillar--image">
+              <Image src="/setsapart1.jpg" alt="" fill quality={85} sizes="(max-width: 700px) 100vw, (max-width: 1000px) 50vw, 25vw" className="pillar__img" style={{ objectFit: "cover" }} />
+              <span className="pillar__scrim" aria-hidden="true" />
               <span className="pillar__icon" aria-hidden="true">
                 {/* map pin — on-ground in India */}
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -77,7 +80,9 @@ export default function HomePage() {
               </p>
             </article>
 
-            <article className="pillar">
+            <article className="pillar pillar--image">
+              <Image src="/setsapart2.jpg" alt="" fill quality={85} sizes="(max-width: 700px) 100vw, (max-width: 1000px) 50vw, 25vw" className="pillar__img" style={{ objectFit: "cover" }} />
+              <span className="pillar__scrim" aria-hidden="true" />
               <span className="pillar__icon" aria-hidden="true">
                 {/* magnifying glass — research */}
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -92,7 +97,9 @@ export default function HomePage() {
               </p>
             </article>
 
-            <article className="pillar">
+            <article className="pillar pillar--image">
+              <Image src="/setsapart3.jpg" alt="" fill quality={85} sizes="(max-width: 700px) 100vw, (max-width: 1000px) 50vw, 25vw" className="pillar__img" style={{ objectFit: "cover" }} />
+              <span className="pillar__scrim" aria-hidden="true" />
               <span className="pillar__icon" aria-hidden="true">
                 {/* headset — high-touch dealing desk */}
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -108,7 +115,9 @@ export default function HomePage() {
               </p>
             </article>
 
-            <article className="pillar">
+            <article className="pillar pillar--image">
+              <Image src="/setsapart4.jpg" alt="" fill quality={85} sizes="(max-width: 700px) 100vw, (max-width: 1000px) 50vw, 25vw" className="pillar__img" style={{ objectFit: "cover" }} />
+              <span className="pillar__scrim" aria-hidden="true" />
               <span className="pillar__icon" aria-hidden="true">
                 {/* people — corporate relationships & access */}
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -164,29 +173,53 @@ export default function HomePage() {
           </div>
 
           {/* Client logos — representative institutional relationships */}
-          <div style={{ marginTop: 56 }}>
+          <div className="logo-section">
             <p className="logo-grid__kicker">Trusted by leading institutions</p>
             <ul className="logo-grid" aria-label="Representative clients">
               {[
-                "State Bank of India",
-                "HDFC Bank",
-                "ICICI Bank",
-                "Bank of Baroda",
-                "Punjab National Bank",
-                "Canara Bank",
-                "Union Bank of India",
-                "Bank of India",
-                "IDBI Bank",
-                "LIC of India",
-                "UTI Mutual Fund",
-                "HDFC Mutual Fund",
-                "SBI Pension Fund",
-                "RBL Bank",
-                "Indian Bank",
-                "SIDBI",
-              ].map((name) => (
-                <li key={name} className="logo-tile">
-                  <span>{name}</span>
+                // institutions with logo marks
+                { name: "LIC", file: "lic.jpeg" },
+                { name: "State Bank of India", file: "sbi_logo.png" },
+                { name: "Star Union Dai-ichi", file: "star union daichi.png" },
+                { name: "GIC", file: "gic.png" },
+                { name: "SBI General Insurance", file: "sbi general.webp" },
+                { name: "New India Assurance", file: "NIA_logo.png", dark: true },
+                { name: "United India Insurance", file: "uii.jpg" },
+                { name: "Quant Mutual Fund", file: "quant-logo.png" },
+                { name: "Taurus Mutual Fund", file: "taurus.png" },
+                { name: "Shriram Mutual Fund", file: "shriram-amc-logo.webp" },
+                { name: "Capitalmind Mutual Fund", file: "capitalmind.png" },
+                { name: "LIC Pension Fund", file: "lic pension fund.png" },
+                { name: "Axis Pension Fund", file: "axis pension fund.png", dark: true },
+                { name: "HDFC Bank", file: "hdfc bank.png" },
+                { name: "Bank of Baroda", file: "bob.png", dark: true },
+                { name: "Federal Bank", file: "federal bank.png" },
+                { name: "ICICI Bank", file: "icici bank.png", dark: true },
+                { name: "Punjab National Bank", file: "pnb.png" },
+                { name: "Canara Bank", file: "canara bank.png", dark: true },
+                { name: "Union Bank of India", file: "ubi_logo.png" },
+                { name: "Bank of India", file: "bank of india.png" },
+                { name: "IDBI Bank", file: "IDBI_Logo.jpg" },
+                { name: "UTI Mutual Fund", file: "uti mutual fund.png" },
+                { name: "HDFC Mutual Fund", file: "hdfc mf.png" },
+                { name: "SBI Pension Fund", file: "sbi pension fund.png" },
+                { name: "RBL Bank", file: "rbl.png" },
+                { name: "Indian Bank", file: "indian bank.jpg" },
+                { name: "SIDBI", file: "sidbi.jpg" },
+              ].map((c) => (
+                <li key={c.name} className={`logo-tile${c.dark ? " logo-tile--dark" : ""}`} title={c.name}>
+                  {c.file ? (
+                    <Image
+                      src={`/client logos/${c.file}`}
+                      alt={c.name}
+                      width={180}
+                      height={56}
+                      className="logo-tile__img"
+                      style={{ objectFit: "contain" }}
+                    />
+                  ) : (
+                    <span>{c.name}</span>
+                  )}
                 </li>
               ))}
             </ul>

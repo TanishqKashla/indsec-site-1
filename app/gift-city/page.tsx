@@ -61,7 +61,7 @@ export default function GiftCityPage() {
           <div className="grid grid--2">
             <article className="pillar">
               <h3 className="pillar__title">Curated Indian Equity Mandates</h3>
-              <p className="pillar__text">Discretionary PMS strategies anchored in Indsec's research — quality, growth and special-situations themes.</p>
+              <p className="pillar__text">Carefully whetted different AIF/PMS funds to partner with a few that have provided the best risk-adjusted returns over a longer time-period.</p>
             </article>
             <article className="pillar">
               <h3 className="pillar__title">Reporting & Oversight</h3>
@@ -76,17 +76,18 @@ export default function GiftCityPage() {
         <div className="container">
           <SectionHeading
             title="How to Get Started"
-            lead="Four guided steps — from eligibility to your first allocation."
+            lead="Five guided steps — from your first call to monthly reporting."
             withRule
           />
           <div className="process">
             <div className="process__track" aria-hidden="true" />
             <ol className="process__steps">
               {[
-                { n: "1", t: "Eligibility", d: "We confirm jurisdiction, residency status and source-of-funds requirements." },
-                { n: "2", t: "Account Setup", d: "Open the appropriate GIFT City / PMS account with a documentation walk-through." },
-                { n: "3", t: "Funding", d: "Inward remittance via designated banking partners; FX and custody arranged." },
-                { n: "4", t: "Invest", d: "Allocate to PMS strategies or direct equity through the Indsec institutional desk." },
+                { n: "1", t: "Introductory Call", d: "We will understand your India investment strategy and explain the benefits of investing through GIFT city." },
+                { n: "2", t: "Investment Strategy Discussion", d: "Introduce the funds we have partnered with and explain their strategy and past returns." },
+                { n: "3", t: "Account-setup and Documents", d: "Gather all required documents and setup account with AIF Fund." },
+                { n: "4", t: "Funding", d: "Inward remittance directly from your international bank account to AIF bank account." },
+                { n: "5", t: "Monthly reports", d: "We closely track your funds performance by generating monthly performance reports." },
               ].map((s) => (
                 <li key={s.n} className="process__step">
                   <span className="process__num" aria-hidden="true">{s.n}</span>

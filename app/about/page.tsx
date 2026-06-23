@@ -51,7 +51,9 @@ const MILESTONES = [
   { badge: "1993", title: "Founded", label: "Indsec Securities & Finance incorporated in Mumbai." },
   { badge: "NSE", title: "Early Member", label: "Among the early members of the National Stock Exchange." },
   { badge: "BSE", title: "Exchange Member", label: "Trading member of BSE Limited." },
+  { badge: "2010", title: "Wealth Management", label: "Expanded into wealth management, broadening our advisory offering." },
   { badge: "2019", title: "Recognised", label: "Honoured with an industry award for excellence." },
+  { badge: "2023", title: "GIFT City", label: "Expanded into GIFT City, opening a regulated gateway for global investors." },
 ];
 
 export default function AboutPage() {
