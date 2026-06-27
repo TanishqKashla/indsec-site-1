@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { SectionHeading } from "@/components/SectionHeading";
 import { LinesOfBusinessTabs } from "@/components/LinesOfBusinessTabs";
+import { WeServe } from "@/components/WeServe";
 
 export default function HomePage() {
   return (
@@ -154,23 +155,7 @@ export default function HomePage() {
             withRule
           />
 
-          <div className="grid grid--3">
-            {[
-              { t: "Foreign Institutional Investors", a: "(FIIs)" },
-              { t: "Domestic Institutional Investors", a: "(DIIs)" },
-              { t: "Mutual Funds", a: "" },
-              { t: "Alternative Investment Funds", a: "(AIFs)" },
-              { t: "Portfolio Management Services", a: "(PMS)" },
-              { t: "Foreign Portfolio Investors", a: "(FPIs)" },
-            ].map((c) => (
-              <article key={c.t} className="card">
-                <div className="card__body" style={{ textAlign: "center", padding: 24 }}>
-                  <h3 className="title-h4" style={{ color: "var(--color-navy-900)" }}>{c.t}</h3>
-                  {c.a && <p className="fs-14 muted" style={{ marginTop: 4 }}>{c.a}</p>}
-                </div>
-              </article>
-            ))}
-          </div>
+          <WeServe />
 
           {/* Client logos — representative institutional relationships */}
           <div className="logo-section">

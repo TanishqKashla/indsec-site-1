@@ -4,7 +4,7 @@ import { PageHero } from "@/components/PageHero";
 import { SectionHeading } from "@/components/SectionHeading";
 
 export const metadata: Metadata = {
-  title: "Investor Relations",
+  title: "Disclosures & Downloads",
   description:
     "Indsec's regulatory information, statutory disclosures, SEBI registrations, and grievance redressal channels.",
 };
@@ -105,7 +105,7 @@ function docLinkLabel(d: (typeof DISCLOSURES)[number]) {
 export default function InvestorRelationsPage() {
   return (
     <>
-      <PageHero kicker="Investor Relations" title="Disclosure & Compliance" />
+      <PageHero kicker="Disclosures & Downloads" title="Disclosure & Compliance" />
 
       {/* Intro */}
       <section className="section">
@@ -226,64 +226,6 @@ export default function InvestorRelationsPage() {
         </div>
       </section>
 
-      {/* Grievance */}
-      <section className="section section--cream" id="grievance">
-        <div className="container">
-          <SectionHeading title="Grievance Redressal & Escalation" withRule />
-          <div className="grid grid--3">
-            <article className="pillar">
-              <h3 className="pillar__title">Level 1 · Customer Service</h3>
-              <ul className="list-crimson">
-                <li><a href="mailto:isfl_invgrv@indsec.co.in">isfl_invgrv@indsec.co.in</a></li>
-                <li>Response within 1 working day</li>
-              </ul>
-            </article>
-            <article className="pillar">
-              <h3 className="pillar__title">Level 2 · Compliance Officer</h3>
-              <ul className="list-crimson">
-                <li><a href="mailto:co@indsec.co.in">co@indsec.co.in</a></li>
-                <li>Response within 5 working days</li>
-              </ul>
-            </article>
-            <article className="pillar">
-              <h3 className="pillar__title">Level 3 · SEBI SCORES / ODR</h3>
-              <ul className="list-crimson">
-                <li><a href="https://scores.sebi.gov.in" target="_blank" rel="noopener noreferrer">scores.sebi.gov.in ↗</a></li>
-                <li><a href="https://smartodr.in/login" target="_blank" rel="noopener noreferrer">SMARTODR portal ↗</a></li>
-              </ul>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      {/* Transparency strip */}
-      <section className="section">
-        <div className="container">
-          <div className="info-tip">
-            <div className="info-tip__icon" aria-hidden="true">⚖</div>
-            <div>
-              <p className="info-tip__title">Transparency First</p>
-              <p className="info-tip__body">
-                "Beware of unsolicited tips and trading-account scams. Never
-                share your trading account credentials, OTP, or payment
-                instructions with anyone claiming to be from Indsec. We will
-                never ask for these over phone or chat."
-              </p>
-              <p className="info-tip__body" style={{ marginTop: 8 }}>
-                Verify Indsec's SEBI registration on{" "}
-                <a
-                  href="https://siportal.sebi.gov.in/intermediary/sebi-check"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  SEBI Check ↗
-                </a>
-                .
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
     </>
   );
 }

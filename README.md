@@ -23,7 +23,7 @@ to Indsec's brand (deep crimson + navy on Mulish).
   /family-office            Family Office
   /gift-city                GIFT City / PMS
 /research                   Research  (anchor: #reports)
-/investor-relations         Investor Relations  (anchor: #disclosures)
+/investor-relations         Disclosures & Downloads  (anchor: #disclosures)
 /contact                    Contact
 ```
 

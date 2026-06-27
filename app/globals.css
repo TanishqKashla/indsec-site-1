@@ -1732,3 +1732,199 @@ h2, .section-heading {
   }
   .hero__cta .btn { width: 100%; }
 }
+
+/* ==========================================================================
+   Mandatory disclosure — prominent clickable banner + modal pop-up
+   ========================================================================== */
+
+/* "Read disclosures" — blue oval button, fixed bottom-right, persists on scroll */
+.hero__disclosure-btn {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 1040;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 22px;
+  font: var(--fw-semibold) var(--fs-14)/1 var(--font-sans);
+  color: #FFFFFF;
+  background: var(--color-navy-900);
+  border: 1px solid var(--color-navy-900);
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  box-shadow: 0 6px 18px rgba(27, 42, 94, 0.35);
+  transition: background 0.15s ease, border-color 0.15s ease, transform 0.15s ease;
+}
+.hero__disclosure-btn::before { content: "\2139"; font-weight: var(--fw-bold); }
+.hero__disclosure-btn:hover {
+  background: var(--color-navy-800);
+  border-color: var(--color-navy-800);
+  transform: translateY(-1px);
+}
+.hero__disclosure-btn:focus-visible { outline: 2px solid var(--color-navy-900); outline-offset: 2px; }
+
+@media (max-width: 600px) {
+  .hero__disclosure-btn {
+    right: 14px;
+    bottom: 14px;
+    padding: 8px 16px;
+  }
+}
+
+/* Shared modal shell — used by the disclosure pop-up and the client-list pop-up */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 3000;
+  background: rgba(27, 42, 94, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  animation: modal-fade 0.16s ease;
+}
+@keyframes modal-fade { from { opacity: 0; } to { opacity: 1; } }
+
+.modal-box {
+  background: #FFFFFF;
+  border-radius: var(--radius-lg);
+  width: 100%;
+  max-width: 760px;
+  max-height: 88vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
+  overflow: hidden;
+}
+
+.modal-box__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 18px 24px;
+  background: var(--color-crimson-600);
+  color: #FFFFFF;
+}
+.modal-box__title {
+  font: var(--fw-semibold) var(--fs-18)/var(--lh-18) var(--font-sans);
+  margin: 0;
+  color: #FFFFFF;
+}
+.modal-box__close {
+  flex-shrink: 0;
+  width: 34px;
+  height: 34px;
+  border-radius: var(--radius-sm);
+  background: rgba(255, 255, 255, 0.15);
+  color: #FFFFFF;
+  font-size: 16px;
+  line-height: 1;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s ease;
+}
+.modal-box__close:hover { background: rgba(255, 255, 255, 0.3); }
+.modal-box__close:focus-visible { outline: 2px solid #FFFFFF; outline-offset: 2px; }
+
+.modal-box__body {
+  padding: 24px;
+  overflow-y: auto;
+  font-size: var(--fs-14);
+  line-height: var(--lh-16);
+  color: var(--color-text);
+}
+.modal-box__body p { margin: 0 0 14px; }
+.modal-box__body p:last-child { margin-bottom: 0; }
+
+.disclosure-h {
+  font: var(--fw-semibold) var(--fs-16)/var(--lh-16) var(--font-sans);
+  color: var(--color-crimson-600);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin: 24px 0 12px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--color-crimson-100);
+}
+.disclosure-h:first-child { margin-top: 0; }
+
+.disclosure-list { margin: 0 0 14px; padding-left: 20px; }
+.disclosure-list li { margin-bottom: 8px; padding-left: 4px; }
+.disclosure-list li::marker { color: var(--color-crimson-600); }
+.disclosure-list a { text-decoration: underline; word-break: break-word; }
+
+.disclosure-note {
+  text-align: center;
+  font-weight: var(--fw-semibold);
+  letter-spacing: 1px;
+  color: var(--color-crimson-600);
+}
+.disclosure-source {
+  font-size: var(--fs-12);
+  line-height: var(--lh-12);
+  color: var(--color-text-muted, #555);
+  font-style: italic;
+}
+
+.modal-box__foot {
+  padding: 16px 24px;
+  border-top: 1px solid var(--color-crimson-100);
+  display: flex;
+  justify-content: flex-end;
+}
+
+@media (max-width: 600px) {
+  .modal-overlay { padding: 0; }
+  .modal-box { max-width: 100%; max-height: 100vh; border-radius: 0; height: 100%; }
+}
+
+/* Client-list pop-up — "We Serve" categories */
+.serve-card {
+  width: 100%;
+  text-align: center;
+  padding: 24px;
+  cursor: pointer;
+  background: #FFFFFF;
+  border: 1px solid var(--color-border, #E5E7EB);
+  border-radius: var(--radius-lg);
+  transition: box-shadow 0.18s ease, transform 0.18s ease, border-color 0.18s ease;
+}
+.serve-card:hover {
+  box-shadow: var(--shadow-soft);
+  transform: translateY(-2px);
+  border-color: var(--color-crimson-600);
+}
+.serve-card:focus-visible { outline: 2px solid var(--color-crimson-600); outline-offset: 2px; }
+.serve-card__hint {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 12px;
+  font: var(--fw-semibold) var(--fs-12)/1 var(--font-sans);
+  color: var(--color-crimson-600);
+}
+
+.client-list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 10px 24px; }
+.client-list li {
+  padding: 8px 0 8px 18px;
+  position: relative;
+  border-bottom: 1px solid var(--color-crimson-100);
+  font-size: var(--fs-14);
+  color: var(--color-navy-900);
+}
+.client-list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 14px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--color-crimson-600);
+}
+@media (max-width: 600px) {
+  .client-list { grid-template-columns: 1fr; }
+}

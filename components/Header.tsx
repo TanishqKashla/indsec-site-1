@@ -40,7 +40,7 @@ const NAV: NavItem[] = [
   },
   {
     href: "/investor-relations",
-    label: "Investor Relations",
+    label: "Disclosures & Downloads",
     children: [
       { href: "/investor-relations#disclosures", label: "Disclosures", desc: "SEBI, research analyst & policy disclosures" },
     ],
