@@ -22,8 +22,19 @@ to Indsec's brand (deep crimson + navy on Mulish).
   /institutional-broking    Institutional Broking
   /family-office            Family Office
   /gift-city                GIFT City / PMS
-/research                   Research  (anchor: #reports)
-/investor-relations         Disclosures & Downloads  (anchor: #disclosures)
+/research                   Research — public reports portal (anchor: #reports)
+  /research/<slug>          Report detail (embedded PDF viewer + download)
+/disclosures                Disclosures  (hub: statutory info + links to all sub-pages)
+  /disclosures/investor-charter-complaints   Investor Charters & Complaints Data
+  /disclosures/client-registration-document  Client Registration Documents
+  /disclosures/investor-mobile-application-by-depositories  Investor Mobile Apps (NSDL/CDSL)
+  /disclosures/kra-status     KRA / KYC Status
+  /disclosures/investor-awareness-and-education  Investor Awareness & Education (video gallery)
+  /disclosures/client-bank-account  Client Bank Account Details
+  /disclosures/research-disclaimer-and-disclosures  Research Disclaimer & Disclosures
+  /disclosures/e-voting       e-Voting Facility
+  /disclosures/corporate-disclosure  Corporate Disclosure
+/important-links            Important Links (grievance portals, exchanges, regulators)
 /contact                    Contact
 ```
 
