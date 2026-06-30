@@ -736,6 +736,157 @@ h2, .section-heading {
 }
 
 /* ==========================================================================
+   Homepage hero (modern, two-column) — independent of .hero (PageHero)
+   ========================================================================== */
+.hero-home {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background: linear-gradient(135deg, #16234E 0%, #1B2A5E 45%, #5E0E12 100%);
+  color: #FFFFFF;
+}
+/* full-bleed skyline background image */
+.hero-home__bg {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+}
+.hero-home__bg img { filter: saturate(1.05); }
+/* readability overlay — darker on the left where the copy sits, brand-tinted */
+.hero-home__overlay {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    linear-gradient(90deg, rgba(13, 20, 46, 0.82) 0%, rgba(16, 25, 58, 0.6) 40%, rgba(20, 32, 74, 0.22) 72%, rgba(94, 14, 18, 0.15) 100%),
+    linear-gradient(180deg, rgba(13, 20, 46, 0.12) 0%, transparent 38%, rgba(13, 20, 46, 0.4) 100%);
+}
+
+.hero-home__inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 96px 24px 104px;
+  display: flex;
+  align-items: center;
+  min-height: 540px;
+}
+.hero-home__content { max-width: 680px; }
+
+/* ---- left content ---- */
+.hero-home__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 7px 14px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 999px;
+  font-size: var(--fs-12);
+  font-weight: var(--fw-semibold);
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(6px);
+}
+.hero-home__pulse {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: #58D68D;
+  box-shadow: 0 0 0 0 rgba(88, 214, 141, 0.7);
+  animation: heroPulse 2.2s ease-out infinite;
+}
+@keyframes heroPulse {
+  0%   { box-shadow: 0 0 0 0 rgba(88, 214, 141, 0.6); }
+  70%  { box-shadow: 0 0 0 8px rgba(88, 214, 141, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(88, 214, 141, 0); }
+}
+
+.hero-home__title {
+  margin: 22px 0 0;
+  font-weight: var(--fw-bold);
+  font-size: clamp(34px, 5vw, 54px);
+  line-height: 1.08;
+  letter-spacing: -0.5px;
+  color: #FFFFFF;
+}
+.hero-home__accent {
+  color: #FFFFFF;
+}
+
+.hero-home__sub {
+  margin: 22px 0 0;
+  max-width: 560px;
+  font-size: var(--fs-18);
+  line-height: 29px;
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.hero-home__cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 30px;
+}
+.hero-home__ghost {
+  border-radius: var(--radius-md);
+  padding: 8px 18px;
+  font-size: var(--fs-16);
+  text-transform: none;
+  letter-spacing: normal;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.hero-home__trust {
+  list-style: none;
+  margin: 38px 0 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px 30px;
+}
+.hero-home__trust li {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding-left: 18px;
+}
+.hero-home__trust li::before {
+  content: "";
+  position: absolute;
+  left: 0; top: 4px; bottom: 4px;
+  width: 2px;
+  border-radius: 2px;
+  background: var(--color-crimson-500);
+}
+.hero-home__trust strong {
+  font-size: var(--fs-20);
+  font-weight: var(--fw-bold);
+  color: #FFFFFF;
+  line-height: 1.1;
+}
+.hero-home__trust span {
+  font-size: var(--fs-12);
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* ---- responsive ---- */
+@media (max-width: 940px) {
+  .hero-home__inner { padding: 72px 24px 76px; min-height: 480px; }
+}
+@media (max-width: 600px) {
+  .hero-home__inner { padding: 56px 20px 60px; min-height: 440px; }
+  .hero-home__sub { font-size: var(--fs-16); line-height: 26px; }
+  .hero-home__trust { gap: 14px 22px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-home__pulse { animation: none; }
+}
+
+/* ==========================================================================
    Vertical Tabs (desktop) / Accordion (mobile)  — "Lines of Business" pattern
    ========================================================================== */
 

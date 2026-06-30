@@ -8,41 +8,48 @@ export default function HomePage() {
   return (
     <>
       {/* ------------------------------------------------------------------ Hero */}
-      <section className="hero" aria-label="Indsec — who we are">
-        <div className="hero__inner">
-          <p
-            style={{
-              color: "#FFFFFF",
-              fontWeight: 600,
-              textTransform: "uppercase",
-              letterSpacing: 2,
-              fontSize: 14,
-              marginBottom: 16,
-              textShadow: "0 1px 3px rgba(0,0,0,0.35)",
-            }}
-          >
-            Indsec · NSE &amp; BSE Member · Since 1993
-          </p>
+      <section className="hero-home" aria-label="Indsec — research-led institutional broking">
+        <div className="hero-home__bg" aria-hidden="true">
+          <Image
+            src="/hero-skyline.jpg"
+            alt=""
+            fill
+            priority
+            quality={85}
+            sizes="100vw"
+            style={{ objectFit: "cover", objectPosition: "center" }}
+          />
+        </div>
+        <span className="hero-home__overlay" aria-hidden="true" />
 
-          <div className="hero__panel">
-            <h1 className="hero__title">
-              Insight drives performance. Execution builds trust.
+        <div className="hero-home__inner">
+          <div className="hero-home__content">
+            <h1 className="hero-home__title">
+              Research-led institutional broking for{" "}
+              <span className="hero-home__accent">India&apos;s markets</span>
             </h1>
-          </div>
 
-          <div className="hero__pillars">
-            <span>Deep India Expertise</span>
-            <span>Research-driven Decision Making</span>
-            <span>Seamless Execution</span>
-          </div>
+            <p className="hero-home__sub">
+              Insight drives performance. Execution builds trust. We partner with
+              institutions and family offices — pairing deep India research with
+              high-touch execution and three decades of market access.
+            </p>
 
-          <div className="btn-row hero__cta" style={{ justifyContent: "center", marginTop: 32 }}>
-            <Link href="/institutional-broking" className="btn btn--white">
-              Speak to Our Desk
-            </Link>
-            <Link href="/research" className="btn btn--ghost-white">
-              Access Research
-            </Link>
+            <div className="hero-home__cta">
+              <Link href="/contact" className="btn btn--white">
+                Speak to Our Desk
+              </Link>
+              <Link href="/research" className="btn btn--ghost-white hero-home__ghost">
+                Access Research <span aria-hidden="true">→</span>
+              </Link>
+            </div>
+
+            <ul className="hero-home__trust" aria-label="At a glance">
+              <li><strong>1993</strong><span>Incorporated</span></li>
+              <li><strong>25+ yrs</strong><span>On the exchange</span></li>
+              <li><strong>NSE · BSE</strong><span>Member</span></li>
+              <li><strong>SEBI</strong><span>Registered</span></li>
+            </ul>
           </div>
         </div>
       </section>
