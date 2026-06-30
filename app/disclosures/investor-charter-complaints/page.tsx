@@ -78,7 +78,7 @@ const GROUPS: { heading: string; lead?: string; docs: Doc[] }[] = [
    WCAG 2.5.3 (Label in Name). */
 function docLinkLabel(d: Doc) {
   const size = d.size ? ` (${d.size})` : "";
-  return `Download PDF: ${d.title}${size}. Opens in a new tab.`;
+  return `View PDF: ${d.title}${size}. Opens in a new tab.`;
 }
 
 export default function InvestorCharterComplaintsPage() {
@@ -162,11 +162,10 @@ export default function InvestorCharterComplaintsPage() {
                         href={d.href}
                         target="_blank"
                         rel="noopener noreferrer"
-                        download
                         className="btn btn--outline-crimson btn--sm"
                         aria-label={docLinkLabel(d)}
                       >
-                        Download PDF <span aria-hidden="true">↗</span>
+                        View PDF <span aria-hidden="true">↗</span>
                       </a>
                     </div>
                   </div>

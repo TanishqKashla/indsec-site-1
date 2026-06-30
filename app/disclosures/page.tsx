@@ -6,6 +6,22 @@ import { SectionHeading } from "@/components/SectionHeading";
 
 const SUBPAGES: { title: string; desc: string; href: string; icon: ReactNode }[] = [
   {
+    title: "Corporate Disclosure",
+    desc: "AGM & EGM notices, annual returns and board governance policies, filed under the Companies Act and SEBI guidelines.",
+    href: "/disclosures/corporate-disclosure",
+    icon: (
+      <>
+        <path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z" />
+        <path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2" />
+        <path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2" />
+        <path d="M10 6h4" />
+        <path d="M10 10h4" />
+        <path d="M10 14h4" />
+        <path d="M10 18h4" />
+      </>
+    ),
+  },
+  {
     title: "Investor Charters & Complaints Data",
     desc: "SEBI-mandated investor charters and the monthly investor-complaints data across our broking, depository and PMS activities.",
     href: "/disclosures/investor-charter-complaints",
@@ -104,22 +120,6 @@ const SUBPAGES: { title: string; desc: string; href: string; icon: ReactNode }[]
       </>
     ),
   },
-  {
-    title: "Corporate Disclosure",
-    desc: "SOP for accounts of an incapacitated investor, the Anti-Money Laundering (PMLA) Policy and the PMS Disclosure Document.",
-    href: "/disclosures/corporate-disclosure",
-    icon: (
-      <>
-        <path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z" />
-        <path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2" />
-        <path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2" />
-        <path d="M10 6h4" />
-        <path d="M10 10h4" />
-        <path d="M10 14h4" />
-        <path d="M10 18h4" />
-      </>
-    ),
-  },
 ];
 
 export const metadata: Metadata = {
@@ -127,6 +127,52 @@ export const metadata: Metadata = {
   description:
     "Indsec's regulatory information, statutory disclosures, SEBI registrations, and grievance redressal channels.",
 };
+
+type Doc = { title: string; desc: string; href: string; size?: string };
+
+const CORPORATE_DOCS: Doc[] = [
+  {
+    title: "Operation of Accounts in Case of an Incapacitated Investor",
+    desc: "Common SOP for the operation of accounts in case of an incapacitated investor — applicable to Depositories and Mutual Funds.",
+    href: "/documents/SOP%20-%20Operation%20of%20accounts%20for%20an%20incapacitated%20investor.pdf",
+    size: "271 KB",
+  },
+  {
+    title: "Anti-Money Laundering (PMLA) Policy",
+    desc: "Policy and procedures under the Prevention of Money Laundering Act.",
+    href: "/documents/Anti%20Money%20Laundering%20(PMLA)%20Policy.pdf",
+    size: "353 KB",
+  },
+  {
+    title: "PMS Disclosure Document",
+    desc: "SEBI-mandated disclosure document for Indsec's Portfolio Management Services.",
+    href: "/documents/PMS%20Disclosure%20Document.pdf",
+    size: "400 KB",
+  },
+  {
+    title: "Investor Complaint Process",
+    desc: "The process for raising and escalating an investor complaint with Indsec.",
+    href: "/documents/Indsec%20-%20Investor%20Complaint%20Process.pdf",
+    size: "255 KB",
+  },
+  {
+    title: "Escalation Matrix",
+    desc: "Designated contacts and escalation levels for investor grievances.",
+    href: "/documents/Indsec%20-%20Escalation%20Matrix.pdf",
+    size: "233 KB",
+  },
+  {
+    title: "Account Opening Process",
+    desc: "Step-by-step process for opening an account with Indsec.",
+    href: "/documents/Indsec%20-%20Account%20Opening%20Process.pdf",
+    size: "223 KB",
+  },
+];
+
+function docLinkLabel(d: Doc) {
+  const size = d.size ? ` (${d.size})` : "";
+  return `View PDF: ${d.title}${size}. Opens in a new tab.`;
+}
 
 export default function InvestorRelationsPage() {
   return (
@@ -202,6 +248,75 @@ export default function InvestorRelationsPage() {
                 <h3 className="link-card__title">{p.title}</h3>
                 <p className="link-card__desc">{p.desc}</p>
               </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Corporate disclosure documents */}
+      <section className="section section--band" id="corporate-documents">
+        <div className="container">
+          <div className="grid grid--2">
+            {CORPORATE_DOCS.map((d) => (
+              <article key={d.title} className="card">
+                <div
+                  className="card__body"
+                  style={{ padding: 20, display: "flex", gap: 16, alignItems: "flex-start" }}
+                >
+                  <span
+                    aria-hidden="true"
+                    style={{
+                      flexShrink: 0,
+                      width: 40,
+                      height: 40,
+                      borderRadius: 8,
+                      background: "var(--color-crimson-100)",
+                      color: "var(--color-crimson-600)",
+                      display: "inline-flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                    }}
+                  >
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z" />
+                      <path d="M14 2v6h6" />
+                      <path d="M9 13h6" />
+                      <path d="M9 17h6" />
+                    </svg>
+                  </span>
+                  <div style={{ flex: 1, minWidth: 0 }}>
+                    <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 4, flexWrap: "wrap" }}>
+                      <h3 className="title-h4" style={{ color: "var(--color-navy-900)", textAlign: "left", margin: 0 }}>
+                        {d.title}
+                      </h3>
+                      <span
+                        className="fs-12"
+                        style={{
+                          flexShrink: 0,
+                          padding: "2px 8px",
+                          borderRadius: 999,
+                          background: "var(--color-crimson-100)",
+                          color: "var(--color-crimson-600)",
+                          fontWeight: 600,
+                          letterSpacing: 0.5,
+                        }}
+                      >
+                        PDF{d.size ? ` · ${d.size}` : ""}
+                      </span>
+                    </div>
+                    <p className="fs-14 mb-3">{d.desc}</p>
+                    <a
+                      href={d.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="btn btn--outline-crimson btn--sm"
+                      aria-label={docLinkLabel(d)}
+                    >
+                      View PDF <span aria-hidden="true">↗</span>
+                    </a>
+                  </div>
+                </div>
+              </article>
             ))}
           </div>
         </div>

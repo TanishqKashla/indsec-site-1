@@ -15,81 +15,29 @@ export default function ContactPage() {
       <section className="section">
         <div className="container">
           <div className="grid grid--2">
-            {/* Form */}
-            <form className="card" style={{ padding: 24, display: "flex", flexDirection: "column", gap: 16 }}>
-              <h2 className="title-h2" style={{ color: "var(--color-navy-900)" }}>Send us a message</h2>
+            {/* Registered & Operations Office */}
+            <div className="card" style={{ padding: 28 }}>
+              <h2 className="fs-12" style={{ color: "var(--color-crimson-600)", fontWeight: 700, letterSpacing: 1.4, textTransform: "uppercase", margin: "0 0 14px" }}>
+                Registered and Operations Office
+              </h2>
 
-              <label className="flex flex--col" style={{ gap: 6 }}>
-                <span className="fs-14" style={{ fontWeight: 600 }}>Name</span>
-                <input
-                  type="text"
-                  required
-                  style={{
-                    height: 40, padding: "8px 12px",
-                    border: "1px solid var(--color-border-soft)",
-                    borderRadius: 6, fontFamily: "inherit", fontSize: 16,
-                  }}
-                />
-              </label>
+              <address style={{ fontStyle: "normal", fontSize: "var(--fs-16)", lineHeight: "26px", color: "var(--color-text)", margin: "0 0 22px" }}>
+                <strong style={{ color: "var(--color-navy-900)" }}>Indsec Securities and Finance Ltd.</strong><br />
+                301/302, &ldquo;215 Atrium&rdquo;, A Wing<br />
+                Andheri Kurla Road, Chakala<br />
+                Andheri (East), Mumbai - 400 093
+              </address>
 
-              <label className="flex flex--col" style={{ gap: 6 }}>
-                <span className="fs-14" style={{ fontWeight: 600 }}>Work Email</span>
-                <input
-                  type="email"
-                  required
-                  style={{
-                    height: 40, padding: "8px 12px",
-                    border: "1px solid var(--color-border-soft)",
-                    borderRadius: 6, fontFamily: "inherit", fontSize: 16,
-                  }}
-                />
-              </label>
-
-              <label className="flex flex--col" style={{ gap: 6 }}>
-                <span className="fs-14" style={{ fontWeight: 600 }}>Institution</span>
-                <input
-                  type="text"
-                  style={{
-                    height: 40, padding: "8px 12px",
-                    border: "1px solid var(--color-border-soft)",
-                    borderRadius: 6, fontFamily: "inherit", fontSize: 16,
-                  }}
-                />
-              </label>
-
-              <label className="flex flex--col" style={{ gap: 6 }}>
-                <span className="fs-14" style={{ fontWeight: 600 }}>How can we help?</span>
-                <select
-                  style={{
-                    height: 40, padding: "8px 12px",
-                    border: "1px solid var(--color-border-soft)",
-                    borderRadius: 6, fontFamily: "inherit", fontSize: 16, background: "#fff",
-                  }}
-                >
-                  <option>Institutional Broking</option>
-                  <option>Research distribution access</option>
-                  <option>Family Office advisory</option>
-                  <option>GIFT City / PMS</option>
-                  <option>Compliance / Grievance</option>
-                </select>
-              </label>
-
-              <label className="flex flex--col" style={{ gap: 6 }}>
-                <span className="fs-14" style={{ fontWeight: 600 }}>Message</span>
-                <textarea
-                  rows={5}
-                  style={{
-                    padding: "10px 12px",
-                    border: "1px solid var(--color-border-soft)",
-                    borderRadius: 6, fontFamily: "inherit", fontSize: 16, resize: "vertical",
-                  }}
-                />
-              </label>
-
-              <button type="submit" className="btn btn--crimson" style={{ alignSelf: "flex-start" }}>
-                Send message
-              </button>
-            </form>
+              <dl className="contact-details">
+                <div><dt>Back Office Tel.</dt><dd><a href="tel:+912261146100">+91 22 6114 6100</a></dd></div>
+                <div><dt>Front Office Tel.</dt><dd><a href="tel:+912261146114">+91 22 6114 6114</a></dd></div>
+                <div><dt>Board Line Tel.</dt><dd><a href="tel:+912261146100">+91 22 6114 6100</a></dd></div>
+                <div><dt>Fax</dt><dd>+91 22 6710 6874</dd></div>
+                <div><dt>Email</dt><dd><a href="mailto:isfl@indsec.co.in">isfl@indsec.co.in</a></dd></div>
+                <div><dt>Bloomberg ID</dt><dd>iindsec@bloomberg.net</dd></div>
+                <div><dt>Investor Grievances</dt><dd><a href="mailto:isfl_invgrv@indsec.co.in">isfl_invgrv@indsec.co.in</a></dd></div>
+              </dl>
+            </div>
 
             {/* Office info */}
             <div>
@@ -112,7 +60,7 @@ export default function ContactPage() {
                 <article className="pillar">
                   <h3 className="pillar__title">Compliance</h3>
                   <p className="pillar__text">
-                    <a href="mailto:compliance@indsec.co.in">compliance@indsec.co.in</a><br />
+                    <a href="mailto:co@indsec.co.in">co@indsec.co.in</a><br />
                     Grievances &amp; disclosures
                   </p>
                 </article>
@@ -125,6 +73,21 @@ export default function ContactPage() {
                 </article>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Map */}
+      <section className="section" style={{ paddingTop: 0 }}>
+        <div className="container">
+          <div className="contact-map">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3769.851546015754!2d72.8627271!3d19.1141675!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7c83a476aaaab%3A0xae447c452c744d1b!2sIndsec%20Securities%20and%20Finance%20Limited!5e0!3m2!1sen!2sin!4v1782818810047!5m2!1sen!2sin"
+              title="Indsec Securities and Finance Limited — office location on Google Maps"
+              loading="lazy"
+              allowFullScreen
+              referrerPolicy="strict-origin-when-cross-origin"
+            />
           </div>
         </div>
       </section>

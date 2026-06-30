@@ -14,15 +14,15 @@ export function MandatoryDisclosure() {
   const triggerRef = useRef<HTMLButtonElement | null>(null);
   const closeRef = useRef<HTMLButtonElement | null>(null);
 
-  // Auto-open the disclosures the first time a visitor lands on the site.
+  // Auto-open the disclosures once per browser session (shows again each new session).
   useEffect(() => {
     try {
-      if (!window.localStorage.getItem(SEEN_KEY)) {
+      if (!window.sessionStorage.getItem(SEEN_KEY)) {
         setOpen(true);
-        window.localStorage.setItem(SEEN_KEY, "1");
+        window.sessionStorage.setItem(SEEN_KEY, "1");
       }
     } catch {
-      /* localStorage unavailable (private mode) — silently skip auto-open */
+      /* sessionStorage unavailable (private mode) — silently skip auto-open */
     }
   }, []);
 

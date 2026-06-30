@@ -78,11 +78,10 @@ export default async function ReportDetailPage({
               href={report.pdfUrl}
               target="_blank"
               rel="noopener noreferrer"
-              download
               className="btn btn--crimson"
-              aria-label={`Download PDF: ${report.title}. Opens in a new tab.`}
+              aria-label={`View PDF: ${report.title}. Opens in a new tab.`}
             >
-              Download PDF <span aria-hidden="true">↓</span>
+              View PDF <span aria-hidden="true">↗</span>
             </a>
             <a
               href={report.pdfUrl}

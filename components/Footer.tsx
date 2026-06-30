@@ -83,6 +83,7 @@ export function Footer() {
             <h3 className="footer__title">Get in Touch</h3>
             <ul className="footer__links">
               <li><Link href="/contact">Contact Us</Link></li>
+              <li><Link href="/important-links">Important Links</Link></li>
             </ul>
             <a className="footer__cta" href="mailto:isfl_invgrv@indsec.co.in">
               Investor Grievances

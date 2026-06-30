@@ -19,7 +19,7 @@ const NAV: NavItem[] = [
     label: "About Us",
     children: [
       { href: "/about#history", label: "Company History", desc: "Timeline since 1993, exchange memberships, awards" },
-      { href: "/about#team",    label: "Team Bios & Photos", desc: "Leadership and senior coverage" },
+      { href: "/about#team",    label: "Board of Directors", desc: "Leadership and senior coverage" },
     ],
   },
   {

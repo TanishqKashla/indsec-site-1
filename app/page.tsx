@@ -187,20 +187,30 @@ export default function HomePage() {
                 { name: "Bank of Baroda", file: "bob.png", dark: true },
                 { name: "Federal Bank", file: "federal bank.png" },
                 { name: "ICICI Bank", file: "icici bank.png", dark: true },
-                { name: "Punjab National Bank", file: "pnb.png" },
-                { name: "Canara Bank", file: "canara bank.png", dark: true },
                 { name: "Union Bank of India", file: "ubi_logo.png" },
-                { name: "Bank of India", file: "bank of india.png" },
                 { name: "IDBI Bank", file: "IDBI_Logo.jpg" },
-                { name: "UTI Mutual Fund", file: "uti mutual fund.png" },
-                { name: "HDFC Mutual Fund", file: "hdfc mf.png" },
-                { name: "SBI Pension Fund", file: "sbi pension fund.png" },
                 { name: "RBL Bank", file: "rbl.png" },
                 { name: "Indian Bank", file: "indian bank.jpg" },
+                { name: "Equitas Small Finance Bank", file: "equitas.webp" },
                 { name: "SIDBI", file: "sidbi.jpg" },
+                { name: "Unifi Mutual Fund", file: "unifi mutual fund.png" },
+                { name: "Bank of India Mutual Fund", file: "boi mutual fund.jpg" },
+                { name: "Universal Sompo General Insurance", file: "universal sompo.svg" },
+                { name: "National Insurance", file: "national insurance.svg" },
               ].map((c) => (
                 <li key={c.name} className={`logo-tile${c.dark ? " logo-tile--dark" : ""}`} title={c.name}>
-                  {c.file ? (
+                  {!c.file ? (
+                    <span>{c.name}</span>
+                  ) : c.file.endsWith(".svg") ? (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img
+                      src={`/client logos/${c.file}`}
+                      alt={c.name}
+                      className="logo-tile__img"
+                      loading="lazy"
+                      style={{ objectFit: "contain", width: 180, height: 56 }}
+                    />
+                  ) : (
                     <Image
                       src={`/client logos/${c.file}`}
                       alt={c.name}
@@ -209,8 +219,6 @@ export default function HomePage() {
                       className="logo-tile__img"
                       style={{ objectFit: "contain" }}
                     />
-                  ) : (
-                    <span>{c.name}</span>
                   )}
                 </li>
               ))}

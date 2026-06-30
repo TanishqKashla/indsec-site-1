@@ -120,11 +120,13 @@ function docLinkLabel(d: Doc) {
     return `Open: ${d.title}. Opens in a new tab.`;
   }
   const size = d.size ? ` (${d.size})` : "";
-  return `Download ${d.kind}: ${d.title}${size}. Opens in a new tab.`;
+  const verb = d.kind === "PDF" ? "View" : "Download";
+  return `${verb} ${d.kind}: ${d.title}${size}. Opens in a new tab.`;
 }
 
 function actionLabel(d: Doc) {
   if (d.kind === "Page") return "Open";
+  if (d.kind === "PDF") return "View PDF";
   return `Download ${d.kind}`;
 }
 
@@ -209,7 +211,7 @@ export default function ClientRegistrationDocumentPage() {
                         href={d.href}
                         target="_blank"
                         rel="noopener noreferrer"
-                        {...(d.external ? {} : { download: true })}
+                        {...(d.kind === "ZIP" ? { download: true } : {})}
                         className="btn btn--outline-crimson btn--sm"
                         aria-label={docLinkLabel(d)}
                       >
