@@ -46,14 +46,14 @@ export default function ContactPage() {
                 <article className="pillar">
                   <h3 className="pillar__title">Institutional Desk</h3>
                   <p className="pillar__text">
-                    <a href="mailto:desk@indsec.co.in">desk@indsec.co.in</a><br />
+                    <a href="mailto:dealing@indsec.co.in">dealing@indsec.co.in</a><br />
                     Same trading-day response
                   </p>
                 </article>
                 <article className="pillar">
                   <h3 className="pillar__title">Family Office</h3>
                   <p className="pillar__text">
-                    <a href="mailto:familyoffice@indsec.co.in">familyoffice@indsec.co.in</a><br />
+                    <a href="mailto:tusharg@indsec.co.in">tusharg@indsec.co.in</a><br />
                     Confidential introductory call
                   </p>
                 </article>
@@ -65,10 +65,17 @@ export default function ContactPage() {
                   </p>
                 </article>
                 <article className="pillar">
-                  <h3 className="pillar__title">Registered Office</h3>
+                  <h3 className="pillar__title">Escalation Matrix</h3>
                   <p className="pillar__text">
-                    Indsec Securities &amp; Finance Limited<br />
-                    Mumbai, Maharashtra, India
+                    Designated contacts and escalation levels for investor grievances.<br />
+                    <a
+                      href="/documents/Indsec%20-%20Escalation%20Matrix.pdf"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label="View PDF: Escalation Matrix (233 KB). Opens in a new tab."
+                    >
+                      View PDF <span aria-hidden="true">↗</span>
+                    </a>
                   </p>
                 </article>
               </div>

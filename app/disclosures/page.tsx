@@ -150,18 +150,6 @@ const CORPORATE_DOCS: Doc[] = [
     size: "400 KB",
   },
   {
-    title: "Investor Complaint Process",
-    desc: "The process for raising and escalating an investor complaint with Indsec.",
-    href: "/documents/Indsec%20-%20Investor%20Complaint%20Process.pdf",
-    size: "255 KB",
-  },
-  {
-    title: "Escalation Matrix",
-    desc: "Designated contacts and escalation levels for investor grievances.",
-    href: "/documents/Indsec%20-%20Escalation%20Matrix.pdf",
-    size: "233 KB",
-  },
-  {
     title: "Account Opening Process",
     desc: "Step-by-step process for opening an account with Indsec.",
     href: "/documents/Indsec%20-%20Account%20Opening%20Process.pdf",
