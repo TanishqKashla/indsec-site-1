@@ -1514,24 +1514,6 @@ h2, .section-heading {
   white-space: nowrap;
 }
 
-/* Contact map embed */
-.contact-map {
-  border-radius: 14px;
-  overflow: hidden;
-  border: 1px solid var(--color-border, #E6E6EA);
-  box-shadow: 0 1px 3px rgba(27, 42, 94, 0.06);
-  line-height: 0;
-}
-.contact-map iframe {
-  display: block;
-  width: 100%;
-  height: 440px;
-  border: 0;
-}
-@media (max-width: 600px) {
-  .contact-map iframe { height: 320px; }
-}
-
 /* Contact office details list */
 .contact-details { margin: 0; display: flex; flex-direction: column; gap: 12px; }
 .contact-details > div {
@@ -2301,11 +2283,11 @@ h2, .section-heading {
 /* framed panel so the logo wall reads as one cohesive unit */
 .logo-section {
   margin-top: 56px;
-  padding: 40px 32px 32px;
-  background: #FFFFFF;
-  border: 0.8px solid var(--color-border);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-soft);
+  padding: 24px 0 8px;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
 }
 
 .logo-grid__kicker {
@@ -2328,16 +2310,72 @@ h2, .section-heading {
   border-radius: 2px;
 }
 
-.logo-grid {
+/* ---- continuously panning logo marquee ---------------------------------- */
+.logo-marquee {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  /* fade the left/right edges so tiles glide in and out softly */
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent,
+    #000 8%,
+    #000 92%,
+    transparent
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    #000 8%,
+    #000 92%,
+    transparent
+  );
+}
+
+.logo-marquee__viewport {
+  overflow: hidden;
+}
+
+.logo-marquee__track {
   list-style: none;
   margin: 0;
   padding: 0;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 14px;
+  display: flex;
+  flex-wrap: nowrap;
+  width: max-content;
+  will-change: transform;
+}
+
+.logo-marquee__track--ltr {
+  animation: logo-pan-left 60s linear infinite;
+}
+.logo-marquee__track--rtl {
+  animation: logo-pan-right 60s linear infinite;
+}
+
+/* pause both rows while the visitor hovers the strip */
+.logo-marquee:hover .logo-marquee__track {
+  animation-play-state: paused;
+}
+
+/* -50% because each track holds the row twice — one full row-width of travel
+   lands the duplicate exactly where the original started: a seamless loop */
+@keyframes logo-pan-left {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+@keyframes logo-pan-right {
+  from { transform: translateX(-50%); }
+  to { transform: translateX(0); }
 }
 
 .logo-tile {
+  flex: 0 0 auto;
+  width: 200px;
+  /* trailing margin (not flex gap) so every tile — including the one joining
+     the two row-copies — is spaced identically; this keeps the -50% loop
+     mathematically seamless */
+  margin-right: 14px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -2389,10 +2427,21 @@ h2, .section-heading {
 .logo-tile:hover .logo-tile__img { transform: scale(1.04); }
 
 @media (max-width: 991px) {
-  .logo-grid { grid-template-columns: repeat(3, 1fr); }
   .logo-section { padding: 32px 20px 24px; }
 }
-@media (max-width: 600px) { .logo-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 600px) {
+  .logo-tile { width: 160px; min-height: 80px; }
+}
+
+/* honour reduced-motion: stop the pan and let the visitor scroll each row */
+@media (prefers-reduced-motion: reduce) {
+  .logo-marquee__track {
+    animation: none;
+  }
+  .logo-marquee__viewport {
+    overflow-x: auto;
+  }
+}
 
 /* ==========================================================================
    Process flow (large arrow + numbered steps) — used on GIFT City
@@ -2698,6 +2747,16 @@ h2, .section-heading {
   gap: 4px;
   margin-top: 12px;
   font: var(--fw-semibold) var(--fs-12)/1 var(--font-sans);
+  color: var(--color-crimson-600);
+}
+
+/* sub-group heading inside a client-list pop-up (e.g. Mutual Funds, Banks) */
+.client-group + .client-group { margin-top: 24px; }
+.client-group__heading {
+  margin: 0 0 10px;
+  font: var(--fw-semibold) var(--fs-12)/1.2 var(--font-sans);
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
   color: var(--color-crimson-600);
 }
 

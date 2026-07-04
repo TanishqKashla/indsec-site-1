@@ -4,6 +4,79 @@ import { SectionHeading } from "@/components/SectionHeading";
 import { LinesOfBusinessTabs } from "@/components/LinesOfBusinessTabs";
 import { WeServe } from "@/components/WeServe";
 
+type ClientLogo = { name: string; file: string; dark?: boolean };
+
+// institutions with logo marks — split across two marquee rows
+const CLIENT_LOGOS: ClientLogo[] = [
+  { name: "LIC", file: "lic.jpeg" },
+  { name: "State Bank of India", file: "sbi_logo.png" },
+  { name: "Star Union Dai-ichi", file: "star union daichi.png" },
+  { name: "GIC", file: "gic.png" },
+  { name: "SBI General Insurance", file: "sbi general.webp" },
+  { name: "New India Assurance", file: "NIA_logo.png", dark: true },
+  { name: "United India Insurance", file: "uii.jpg" },
+  { name: "Quant Mutual Fund", file: "quant-logo.png" },
+  { name: "Taurus Mutual Fund", file: "taurus.png" },
+  { name: "Shriram Mutual Fund", file: "shriram-amc-logo.webp" },
+  { name: "Capitalmind Mutual Fund", file: "capitalmind.png" },
+  { name: "LIC Pension Fund", file: "lic pension fund.png" },
+  { name: "Axis Pension Fund", file: "axis pension fund.png", dark: true },
+  { name: "HDFC Bank", file: "hdfc bank.png" },
+  { name: "Bank of Baroda", file: "bob.png", dark: true },
+  { name: "Federal Bank", file: "federal bank.png" },
+  { name: "ICICI Bank", file: "icici bank.png", dark: true },
+  { name: "Union Bank of India", file: "ubi_logo.png" },
+  { name: "IDBI Bank", file: "IDBI_Logo.jpg" },
+  { name: "RBL Bank", file: "rbl.png" },
+  { name: "Indian Bank", file: "indian bank.jpg" },
+  { name: "Equitas Small Finance Bank", file: "equitas.webp" },
+  { name: "SIDBI", file: "sidbi.jpg" },
+  { name: "Unifi Mutual Fund", file: "unifi mutual fund.png" },
+  { name: "Bank of India Mutual Fund", file: "boi mutual fund.jpg" },
+  { name: "Universal Sompo General Insurance", file: "universal sompo.svg" },
+  { name: "National Insurance", file: "national insurance.svg" },
+];
+
+// alternate logos into two rows so both marquee rows are roughly balanced
+const LOGO_ROWS: ClientLogo[][] = [
+  CLIENT_LOGOS.filter((_, i) => i % 2 === 0),
+  CLIENT_LOGOS.filter((_, i) => i % 2 === 1),
+];
+
+function LogoTile({ logo, hidden }: { logo: ClientLogo; hidden?: boolean }) {
+  return (
+    <li
+      className={`logo-tile${logo.dark ? " logo-tile--dark" : ""}`}
+      title={logo.name}
+      aria-hidden={hidden || undefined}
+    >
+      {logo.file.endsWith(".svg") ? (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img
+          src={`/client logos/${logo.file}`}
+          alt={hidden ? "" : logo.name}
+          className="logo-tile__img"
+          // eager, not lazy: tiles pan into view via CSS transform, which does
+          // not reliably trip the lazy-load IntersectionObserver — lazy tiles
+          // would arrive empty
+          loading="eager"
+          style={{ objectFit: "contain", width: 180, height: 56 }}
+        />
+      ) : (
+        <Image
+          src={`/client logos/${logo.file}`}
+          alt={hidden ? "" : logo.name}
+          width={180}
+          height={56}
+          className="logo-tile__img"
+          loading="eager"
+          style={{ objectFit: "contain" }}
+        />
+      )}
+    </li>
+  );
+}
+
 export default function HomePage() {
   return (
     <>
@@ -164,65 +237,29 @@ export default function HomePage() {
 
           <WeServe />
 
-          {/* Client logos — representative institutional relationships */}
+          {/* Client logos — continuously panning marquee */}
           <div className="logo-section">
             <p className="logo-grid__kicker">Trusted by leading institutions</p>
-            <ul className="logo-grid" aria-label="Representative clients">
-              {[
-                // institutions with logo marks
-                { name: "LIC", file: "lic.jpeg" },
-                { name: "State Bank of India", file: "sbi_logo.png" },
-                { name: "Star Union Dai-ichi", file: "star union daichi.png" },
-                { name: "GIC", file: "gic.png" },
-                { name: "SBI General Insurance", file: "sbi general.webp" },
-                { name: "New India Assurance", file: "NIA_logo.png", dark: true },
-                { name: "United India Insurance", file: "uii.jpg" },
-                { name: "Quant Mutual Fund", file: "quant-logo.png" },
-                { name: "Taurus Mutual Fund", file: "taurus.png" },
-                { name: "Shriram Mutual Fund", file: "shriram-amc-logo.webp" },
-                { name: "Capitalmind Mutual Fund", file: "capitalmind.png" },
-                { name: "LIC Pension Fund", file: "lic pension fund.png" },
-                { name: "Axis Pension Fund", file: "axis pension fund.png", dark: true },
-                { name: "HDFC Bank", file: "hdfc bank.png" },
-                { name: "Bank of Baroda", file: "bob.png", dark: true },
-                { name: "Federal Bank", file: "federal bank.png" },
-                { name: "ICICI Bank", file: "icici bank.png", dark: true },
-                { name: "Union Bank of India", file: "ubi_logo.png" },
-                { name: "IDBI Bank", file: "IDBI_Logo.jpg" },
-                { name: "RBL Bank", file: "rbl.png" },
-                { name: "Indian Bank", file: "indian bank.jpg" },
-                { name: "Equitas Small Finance Bank", file: "equitas.webp" },
-                { name: "SIDBI", file: "sidbi.jpg" },
-                { name: "Unifi Mutual Fund", file: "unifi mutual fund.png" },
-                { name: "Bank of India Mutual Fund", file: "boi mutual fund.jpg" },
-                { name: "Universal Sompo General Insurance", file: "universal sompo.svg" },
-                { name: "National Insurance", file: "national insurance.svg" },
-              ].map((c) => (
-                <li key={c.name} className={`logo-tile${c.dark ? " logo-tile--dark" : ""}`} title={c.name}>
-                  {!c.file ? (
-                    <span>{c.name}</span>
-                  ) : c.file.endsWith(".svg") ? (
-                    // eslint-disable-next-line @next/next/no-img-element
-                    <img
-                      src={`/client logos/${c.file}`}
-                      alt={c.name}
-                      className="logo-tile__img"
-                      loading="lazy"
-                      style={{ objectFit: "contain", width: 180, height: 56 }}
-                    />
-                  ) : (
-                    <Image
-                      src={`/client logos/${c.file}`}
-                      alt={c.name}
-                      width={180}
-                      height={56}
-                      className="logo-tile__img"
-                      style={{ objectFit: "contain" }}
-                    />
-                  )}
-                </li>
+            <div className="logo-marquee" role="list" aria-label="Representative clients">
+              {LOGO_ROWS.map((row, ri) => (
+                <div className="logo-marquee__viewport" key={ri}>
+                  <ul
+                    className={`logo-marquee__track logo-marquee__track--${
+                      ri % 2 === 0 ? "ltr" : "rtl"
+                    }`}
+                  >
+                    {/* two copies of the row make a seamless -50% loop; the
+                        duplicate set is hidden from assistive tech */}
+                    {row.map((logo) => (
+                      <LogoTile key={logo.name} logo={logo} />
+                    ))}
+                    {row.map((logo) => (
+                      <LogoTile key={`${logo.name}-dup`} logo={logo} hidden />
+                    ))}
+                  </ul>
+                </div>
               ))}
-            </ul>
+            </div>
             <p className="fs-12 muted text-center" style={{ marginTop: 16 }}>
               Representative institutional relationships across banks, mutual
               funds, insurers and pension funds. Marks belong to their

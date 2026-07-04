@@ -126,7 +126,6 @@ export function Footer() {
         {/* ---- Bottom bar ---- */}
         <div className="footer__bottom">
           <nav className="footer__legal-links" aria-label="Legal">
-            <a href="https://www.indsec.co.in/disclaimer" target="_blank" rel="noopener noreferrer">Disclaimers</a>
             <Link href="/disclosures">Regulatory Disclosure</Link>
             <Link href="/important-links#grievance">Grievance Redressal</Link>
             <Link href="/important-links">Important Links</Link>

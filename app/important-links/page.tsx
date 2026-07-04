@@ -60,6 +60,10 @@ export default function ImportantLinksPage() {
             withRule
           />
 
+          <p className="text-center" style={{ maxWidth: 760, margin: "0 auto 32px" }}>
+            The process for raising and escalating an investor complaint with Indsec.
+          </p>
+
           <div style={{ maxWidth: 640, margin: "0 auto 32px" }}>
             <article className="card">
               <div
@@ -107,9 +111,6 @@ export default function ImportantLinksPage() {
                       PDF · 255 KB
                     </span>
                   </div>
-                  <p className="fs-14 mb-3">
-                    The process for raising and escalating an investor complaint with Indsec.
-                  </p>
                   <a
                     href="/documents/Indsec%20-%20Investor%20Complaint%20Process.pdf"
                     target="_blank"

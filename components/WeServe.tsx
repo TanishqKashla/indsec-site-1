@@ -7,11 +7,16 @@ import { useEffect, useRef, useState } from "react";
    change periodically (additions / deletions) — update the `clients` arrays
    below as the official list is shared. */
 
+type Group = {
+  heading?: string;
+  items: string[];
+};
+
 type Category = {
   key: string;
   title: string;
   abbr: string;
-  clients: string[];
+  groups: Group[];
 };
 
 const CATEGORIES: Category[] = [
@@ -19,35 +24,149 @@ const CATEGORIES: Category[] = [
     key: "dii",
     title: "Domestic Institutional Investors",
     abbr: "DIIs",
-    // TODO: replace with the official client list (shared separately).
-    clients: [
-      "Life Insurance Corporation of India",
-      "State Bank of India",
-      "SBI General Insurance",
-      "SBI Pension Fund",
-      "The New India Assurance Co. Ltd.",
-      "United India Insurance Co. Ltd.",
-      "General Insurance Corporation of India",
-      "Star Union Dai-ichi Life Insurance",
-      "LIC Pension Fund",
-      "Axis Pension Fund",
-      "UTI Mutual Fund",
-      "HDFC Mutual Fund",
-      "Quant Mutual Fund",
-      "Taurus Mutual Fund",
-      "Shriram Mutual Fund",
-      "Capitalmind Mutual Fund",
+    groups: [
+      {
+        heading: "Mutual Funds",
+        items: [
+          "Bank of India Mutual Fund",
+          "Capitalmind Mutual Fund",
+          "HDFC Mutual Fund",
+          "LIC Mutual Fund",
+          "Quant Mutual Fund",
+          "Shriram Mutual Fund",
+          "Taurus Mutual Fund",
+          "UniFi Mutual Fund",
+          "UTI Mutual Fund",
+        ],
+      },
+      {
+        heading: "Banks",
+        items: [
+          "Bandhan Bank",
+          "Bank of Baroda",
+          "Bank of India",
+          "Bank of Maharashtra",
+          "Canara Bank",
+          "Central Bank of India",
+          "CSB Bank",
+          "Equitas Small Finance Bank",
+          "Federal Bank",
+          "HDFC Bank",
+          "IDBI Bank Ltd",
+          "Indian Bank",
+          "IFCI Limited",
+          "Jana Small Finance Bank",
+          "Karnataka Bank",
+          "Karur Vysya Bank",
+          "Punjab National Bank",
+          "Punjab & Sind Bank",
+          "RBL Bank",
+          "SIDBI",
+          "South Indian Bank",
+          "State Bank of India",
+          "UCO Bank",
+          "Ujjivan Small Finance Bank",
+          "Union Bank of India",
+        ],
+      },
+      {
+        heading: "Pension Funds",
+        items: [
+          "Aditya Birla Sun Life Pension Fund",
+          "Axis Pension Fund",
+          "Kotak Pension Fund",
+          "LIC Pension Fund",
+          "SBI Pension Fund Pvt. Ltd.",
+        ],
+      },
+      {
+        heading: "Insurance Companies",
+        items: [
+          "Life Insurance Corporation of India",
+          "Agriculture Insurance Co of India Ltd",
+          "CreditAccess Life Insurance Ltd.",
+          "General Insurance Corp. of India",
+          "Iffco Tokio General Insurance Co. Ltd.",
+          "Navi General Insurance Limited",
+          "National Insurance Co. Ltd.",
+          "New India Assurance Co. Ltd.",
+          "Oriental Insurance Co. Ltd.",
+          "SBI General Insurance Co. Ltd.",
+          "Star Union Dai-Ichi Life Ins. Co. Ltd.",
+          "United India Insurance Co. Ltd.",
+          "Universal Sompo General Insu. Co. Ltd.",
+        ],
+      },
     ],
   },
   {
     key: "fpi",
     title: "Foreign Portfolio Investors",
     abbr: "FPIs",
-    // TODO: replace with the official client list (shared separately).
-    clients: [
-      "Representative FPI relationships across global asset managers",
-      "Sovereign and pension funds",
-      "Offshore funds and FII sub-accounts",
+    groups: [
+      {
+        items: [
+          "Abridge Investments Ltd.",
+          "Afrin DIA",
+          "Aidos India Fund Ltd.",
+          "Al Maha Investment Fund PCC Onyx Strategy",
+          "Albula Investment Fund Ltd.",
+          "Allstars Investments Ltd.",
+          "Amicorp Capital (Mauritius) Ltd.",
+          "APMS Investment Fund Ltd.",
+          "ARES Diversified",
+          "Ariston Capital Limited",
+          "ASD International Holdings Ltd.",
+          "Augustine Expedition Fund",
+          "Aviator Emerging Market Fund",
+          "Belgrave Investment Fund",
+          "Bridge India Fund",
+          "BTS (Lux) Indian Stocks Mauritius Ltd.",
+          "Calypso Global Investment Fund",
+          "Citrine Fund Ltd.",
+          "Citrus Global Arbitrage Fund",
+          "Coeus Global Opportunities Fund.",
+          "Connecor Investment Enterprise Ltd.",
+          "Cresta Fund Ltd.",
+          "Dovetail India Fund",
+          "Elara India Opportunities Fund Ltd.",
+          "ELM Park Fund Ltd.",
+          "Eminence Global Fund PCC",
+          "Enauge Investments Pte. Ltd.",
+          "First Fund VCC - Astro Fund",
+          "Forbes EMF",
+          "GGI Fund Ltd.",
+          "Global Axe Investment Fund",
+          "Greenback Multi-Market Opp. Fund PCC",
+          "Hypnos Fund Ltd.",
+          "Legends (Bahamas) Series Four Ltd.",
+          "Legends (Cayman) Ltd.",
+          "Legends Debt Capital Holdings Ltd.",
+          "Legends Global Opp. (Singapore) Pte. Ltd.",
+          "LGOF Global Opportunities Ltd.",
+          "LTS Investments Fund Ltd.",
+          "Lotus Global Investments Ltd.",
+          "Magnifica Global Opportunities VCC",
+          "Minerva Emerging Opportunities Fund",
+          "Minerva Ventures Fund",
+          "Multitude Growth Funds Limited",
+          "Nautilus Private Capital Ltd",
+          "New Leaina Investments Ltd.",
+          "Nexpact Limited",
+          "North Star Opportunities Fund VCC",
+          "Old Compton Holdings Ltd",
+          "One Earth Capital Ltd.",
+          "Polus Global Fund",
+          "Port Louis Fund Ltd.",
+          "Resonance Opportunities Fund",
+          "Senik IV Investments Ltd.",
+          "The Great International Tusker Fund",
+          "Universal Golden Fund",
+          "Vespera Fund Ltd.",
+          "Vamelton Fund RAIF V.C.I.C. Ltd.",
+          "Zeal Global Opportunities Fund",
+        ],
+      },
     ],
   },
 ];
@@ -152,11 +271,18 @@ export function WeServe() {
             </div>
 
             <div className="modal-box__body">
-              <ul className="client-list">
-                {active.clients.map((name) => (
-                  <li key={name}>{name}</li>
-                ))}
-              </ul>
+              {active.groups.map((group, gi) => (
+                <div key={group.heading ?? gi} className="client-group">
+                  {group.heading && (
+                    <h3 className="client-group__heading">{group.heading}</h3>
+                  )}
+                  <ul className="client-list">
+                    {group.items.map((name) => (
+                      <li key={name}>{name}</li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
               <p className="fs-12 muted" style={{ marginTop: 16 }}>
                 Representative relationships. Marks and names belong to their respective
                 owners. This list is updated periodically.

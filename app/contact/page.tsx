@@ -23,9 +23,16 @@ export default function ContactPage() {
 
               <address style={{ fontStyle: "normal", fontSize: "var(--fs-16)", lineHeight: "26px", color: "var(--color-text)", margin: "0 0 22px" }}>
                 <strong style={{ color: "var(--color-navy-900)" }}>Indsec Securities and Finance Ltd.</strong><br />
-                301/302, &ldquo;215 Atrium&rdquo;, A Wing<br />
-                Andheri Kurla Road, Chakala<br />
-                Andheri (East), Mumbai - 400 093
+                <a
+                  href="https://www.google.com/maps/search/?api=1&query=19.1141675%2C72.8627271"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Open office address in Google Maps. Opens in a new tab."
+                >
+                  301/302, &ldquo;215 Atrium&rdquo;, A Wing<br />
+                  Andheri Kurla Road, Chakala<br />
+                  Andheri (East), Mumbai - 400 093 <span aria-hidden="true">↗</span>
+                </a>
               </address>
 
               <dl className="contact-details">
@@ -80,21 +87,6 @@ export default function ContactPage() {
                 </article>
               </div>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Map */}
-      <section className="section" style={{ paddingTop: 0 }}>
-        <div className="container">
-          <div className="contact-map">
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3769.851546015754!2d72.8627271!3d19.1141675!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7c83a476aaaab%3A0xae447c452c744d1b!2sIndsec%20Securities%20and%20Finance%20Limited!5e0!3m2!1sen!2sin!4v1782818810047!5m2!1sen!2sin"
-              title="Indsec Securities and Finance Limited — office location on Google Maps"
-              loading="lazy"
-              allowFullScreen
-              referrerPolicy="strict-origin-when-cross-origin"
-            />
           </div>
         </div>
       </section>
