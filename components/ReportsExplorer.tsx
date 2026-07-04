@@ -1,7 +1,6 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import Link from "next/link";
 import {
   CATEGORIES,
   getCategoryMeta,
@@ -146,9 +145,8 @@ export function ReportsExplorer({ reports }: { reports: Report[] }) {
           {shown.map((r) => {
             const meta = getCategoryMeta(r.category);
             return (
-              <Link
+              <div
                 key={r._id}
-                href={`/research/${r.slug}`}
                 className="report-card"
                 style={{ ["--cat" as string]: meta.color }}
               >
@@ -168,7 +166,7 @@ export function ReportsExplorer({ reports }: { reports: Report[] }) {
                     View report <span aria-hidden="true">→</span>
                   </span>
                 </div>
-              </Link>
+              </div>
             );
           })}
         </div>

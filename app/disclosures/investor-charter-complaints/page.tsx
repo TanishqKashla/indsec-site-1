@@ -52,20 +52,20 @@ const GROUPS: { heading: string; lead?: string; docs: Doc[] }[] = [
     docs: [
       {
         title: "Investor Complaints Data — Stock Broking",
-        desc: "Monthly disclosure of complaints received against broking activities (May 2026).",
-        href: "/documents/Investor%20Complaints%20Data%20-%20Stock%20Broking%20Activities%20-%20May%202026.pdf",
+        desc: "Monthly disclosure of complaints received against broking activities (June 2026).",
+        href: "/documents/Investor%20Complaints%20Data%20-%20Stock%20Broking%20Activities%20-%20June%202026.pdf",
         size: "148 KB",
       },
       {
         title: "Investor Complaints Data — Depository",
-        desc: "Monthly disclosure of complaints received against depository activities (May 2026).",
-        href: "/documents/Investor%20Complaints%20Data%20-%20DP%20Activities%20-%20May%202026.pdf",
+        desc: "Monthly disclosure of complaints received against depository activities (June 2026).",
+        href: "/documents/Investor%20Complaints%20Data%20-%20DP%20Activities%20-%20June%202026.pdf",
         size: "210 KB",
       },
       {
         title: "Investor Complaints Data — PMS",
-        desc: "Monthly disclosure of complaints received against PMS activities (May 2026).",
-        href: "/documents/Investor%20Complaints%20Data%20-%20PMS%20-%20May%202026.pdf",
+        desc: "Monthly disclosure of complaints received against PMS activities (June 2026).",
+        href: "/documents/Investor%20Complaints%20Data%20-%20PMS%20-%20June%202026.pdf",
         size: "207 KB",
       },
     ],
