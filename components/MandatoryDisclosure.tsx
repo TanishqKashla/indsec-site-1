@@ -250,7 +250,10 @@ export function MandatoryDisclosure() {
                 an authorized person or an associate of the broker, other than a SEBI
                 registered Stock broker.
               </p>
+            </div>
 
+            {/* Pinned outside the scrollable body, above the action button. */}
+            <div className="modal-box__foot">
               <p className="disclosure-source">
                 Source:{" "}
                 <a
@@ -265,9 +268,6 @@ export function MandatoryDisclosure() {
                 findings are based on annual Profit/Loss incurred by individual traders in
                 equity F&amp;O during FY 2021-22.
               </p>
-            </div>
-
-            <div className="modal-box__foot">
               <button type="button" className="btn btn--crimson" onClick={() => setOpen(false)}>
                 I understand
               </button>

@@ -2747,8 +2747,12 @@ h2, .section-heading {
   padding: 16px 24px;
   border-top: 1px solid var(--color-crimson-100);
   display: flex;
-  justify-content: flex-end;
+  flex-direction: column;
+  gap: 12px;
 }
+/* Source note stays pinned here, outside the scrollable body. */
+.modal-box__foot .disclosure-source { margin: 0; }
+.modal-box__foot .btn { align-self: flex-end; }
 
 @media (max-width: 600px) {
   .modal-overlay { padding: 0; }
