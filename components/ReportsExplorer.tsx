@@ -78,6 +78,7 @@ export function ReportsExplorer({ reports }: { reports: Report[] }) {
       if (!q) return true;
       return (
         r.title.toLowerCase().includes(q) ||
+        (r.subcategoryLabel ?? "").toLowerCase().includes(q) ||
         r.summary.toLowerCase().includes(q) ||
         (r.tags ?? []).some((t) => t.toLowerCase().includes(q))
       );
@@ -157,6 +158,9 @@ export function ReportsExplorer({ reports }: { reports: Report[] }) {
                   <span className="report-card__cat">{meta.label}</span>
                 </div>
                 <div className="report-card__body">
+                  {r.subcategoryLabel && (
+                    <p className="report-card__series">{r.subcategoryLabel}</p>
+                  )}
                   <time className="report-card__date" dateTime={r.publishedDate}>
                     {formatDate(r.publishedDate)}
                   </time>

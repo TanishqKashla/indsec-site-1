@@ -57,6 +57,11 @@ export default async function ReportDetailPage({
           >
             {meta.label}
           </span>
+          {report.subcategoryLabel && (
+            <span className="report-detail__series">
+              {report.subcategoryLabel}
+            </span>
+          )}
           <h1 className="report-detail__title">{report.title}</h1>
           <time className="report-detail__date" dateTime={report.publishedDate}>
             {formatDate(report.publishedDate)}

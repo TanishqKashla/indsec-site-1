@@ -1384,6 +1384,13 @@ h2, .section-heading {
   flex: 1;
 }
 .report-card__date { font-size: var(--fs-12); color: #6B6B6B; }
+.report-card__series {
+  margin: 0;
+  font: var(--fw-semibold) var(--fs-12)/1.2 var(--font-sans);
+  color: var(--cat);
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+}
 .report-card__title {
   font: var(--fw-semibold) var(--fs-18)/1.35 var(--font-sans);
   color: var(--color-navy-900);
@@ -1437,6 +1444,12 @@ h2, .section-heading {
   margin: 0 0 8px;
 }
 .report-detail__date { font-size: var(--fs-14); color: #6B6B6B; }
+.report-detail__series {
+  display: block;
+  font: var(--fw-semibold) var(--fs-14)/1.2 var(--font-sans);
+  color: var(--color-crimson-600);
+  margin-bottom: 6px;
+}
 .report-detail__summary {
   margin: 14px 0 0;
   font-size: var(--fs-18);

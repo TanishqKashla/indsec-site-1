@@ -1,8 +1,4 @@
 import type { Metadata } from "next";
-import "./globals.css";
-import { Header } from "@/components/Header";
-import { Footer } from "@/components/Footer";
-import { MandatoryDisclosure } from "@/components/MandatoryDisclosure";
 
 export const metadata: Metadata = {
   title: {
@@ -17,13 +13,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body>
-        <a href="#main" className="skip-link">Skip to content</a>
-        <Header />
-        <main id="main">{children}</main>
-        <Footer />
-        <MandatoryDisclosure />
-      </body>
+      <body>{children}</body>
     </html>
   );
 }
