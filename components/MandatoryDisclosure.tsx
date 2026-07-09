@@ -130,20 +130,6 @@ export function MandatoryDisclosure() {
                   profits as transaction cost.
                 </li>
               </ul>
-              <p className="disclosure-source">
-                Source:{" "}
-                <a
-                  href="https://www.sebi.gov.in/reports-and-statistics/research/jan-2023/study-analysis-of-profit-and-loss-of-individual-traders-dealing-in-equity-fando-segment_67525.html"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  SEBI study dated January 25, 2023
-                </a>{" "}
-                on &ldquo;Analysis of Profit and Loss of Individual Traders dealing in
-                equity Futures and Options (F&amp;O) Segment&rdquo;, wherein Aggregate Level
-                findings are based on annual Profit/Loss incurred by individual traders in
-                equity F&amp;O during FY 2021-22.
-              </p>
 
               {/* A — Attention Investors */}
               <h3 className="disclosure-h">Attention Investors</h3>
@@ -263,6 +249,21 @@ export function MandatoryDisclosure() {
                 Please do not transfer funds, for the purposes of trading to anyone, including
                 an authorized person or an associate of the broker, other than a SEBI
                 registered Stock broker.
+              </p>
+
+              <p className="disclosure-source">
+                Source:{" "}
+                <a
+                  href="https://www.sebi.gov.in/reports-and-statistics/research/jan-2023/study-analysis-of-profit-and-loss-of-individual-traders-dealing-in-equity-fando-segment_67525.html"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  SEBI study dated January 25, 2023
+                </a>{" "}
+                on &ldquo;Analysis of Profit and Loss of Individual Traders dealing in
+                equity Futures and Options (F&amp;O) Segment&rdquo;, wherein Aggregate Level
+                findings are based on annual Profit/Loss incurred by individual traders in
+                equity F&amp;O during FY 2021-22.
               </p>
             </div>
 
