@@ -111,6 +111,40 @@ export function MandatoryDisclosure() {
             </div>
 
             <div className="modal-box__body">
+              {/* Risk Disclosures on Derivatives */}
+              <h3 className="disclosure-h">Risk Disclosures on Derivatives</h3>
+              <ul className="disclosure-list">
+                <li>
+                  9 out of 10 individual traders in equity Futures and Options Segment,
+                  incurred net losses.
+                </li>
+                <li>
+                  On an average, loss makers registered net trading loss close to ₹ 50,000.
+                </li>
+                <li>
+                  Over and above the net trading losses incurred, loss makers expended an
+                  additional 28% of net trading losses as transaction costs.
+                </li>
+                <li>
+                  Those making net trading profits, incurred between 15% to 50% of such
+                  profits as transaction cost.
+                </li>
+              </ul>
+              <p className="disclosure-source">
+                Source:{" "}
+                <a
+                  href="https://www.sebi.gov.in/reports-and-statistics/research/jan-2023/study-analysis-of-profit-and-loss-of-individual-traders-dealing-in-equity-fando-segment_67525.html"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  SEBI study dated January 25, 2023
+                </a>{" "}
+                on &ldquo;Analysis of Profit and Loss of Individual Traders dealing in
+                equity Futures and Options (F&amp;O) Segment&rdquo;, wherein Aggregate Level
+                findings are based on annual Profit/Loss incurred by individual traders in
+                equity F&amp;O during FY 2021-22.
+              </p>
+
               {/* A — Attention Investors */}
               <h3 className="disclosure-h">Attention Investors</h3>
               <ul className="disclosure-list">
@@ -229,32 +263,6 @@ export function MandatoryDisclosure() {
                 Please do not transfer funds, for the purposes of trading to anyone, including
                 an authorized person or an associate of the broker, other than a SEBI
                 registered Stock broker.
-              </p>
-
-              {/* Risk Disclosures on Derivatives */}
-              <h3 className="disclosure-h">Risk Disclosures on Derivatives</h3>
-              <ul className="disclosure-list">
-                <li>
-                  9 out of 10 individual traders in equity Futures and Options Segment,
-                  incurred net losses.
-                </li>
-                <li>
-                  On an average, loss makers registered net trading loss close to ₹ 50,000.
-                </li>
-                <li>
-                  Over and above the net trading losses incurred, loss makers expended an
-                  additional 28% of net trading losses as transaction costs.
-                </li>
-                <li>
-                  Those making net trading profits, incurred between 15% to 50% of such
-                  profits as transaction cost.
-                </li>
-              </ul>
-              <p className="disclosure-source">
-                Source: SEBI study dated January 25, 2023 on &ldquo;Analysis of Profit and Loss of
-                Individual Traders dealing in equity Futures and Options (F&amp;O) Segment&rdquo;,
-                wherein Aggregate Level findings are based on annual Profit/Loss incurred by
-                individual traders in equity F&amp;O during FY 2021-22.
               </p>
             </div>
 
