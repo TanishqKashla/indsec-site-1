@@ -36,6 +36,33 @@ export default defineConfig({
           category: params.category,
         }),
       },
+      {
+        id: "corporate-disclosure-by-section",
+        title: "Corporate Disclosure (with section)",
+        schemaType: "corporateDisclosure",
+        parameters: [{ name: "section", type: "string" }],
+        value: (params: { section?: string }) => ({
+          section: params.section,
+        }),
+      },
+      {
+        id: "investor-charter-by-section",
+        title: "Investor Charter / Complaint (with section)",
+        schemaType: "investorCharterComplaint",
+        parameters: [{ name: "section", type: "string" }],
+        value: (params: { section?: string }) => ({
+          section: params.section,
+        }),
+      },
+      {
+        id: "client-registration-by-section",
+        title: "Client Registration Document (with section)",
+        schemaType: "clientRegistrationDoc",
+        parameters: [{ name: "section", type: "string" }],
+        value: (params: { section?: string }) => ({
+          section: params.section,
+        }),
+      },
     ],
   },
 });

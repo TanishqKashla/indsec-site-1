@@ -3,6 +3,7 @@ import type { ReactNode } from "react";
 import Link from "next/link";
 import { PageHero } from "@/components/PageHero";
 import { SectionHeading } from "@/components/SectionHeading";
+import { getCorporateDocuments, type CorporateDocument } from "@/lib/disclosures";
 
 const SUBPAGES: { title: string; desc: string; href: string; icon: ReactNode }[] = [
   {
@@ -128,41 +129,14 @@ export const metadata: Metadata = {
     "Indsec's regulatory information, statutory disclosures, SEBI registrations, and grievance redressal channels.",
 };
 
-type Doc = { title: string; desc: string; href: string; size?: string };
-
-const CORPORATE_DOCS: Doc[] = [
-  {
-    title: "Operation of Accounts in Case of an Incapacitated Investor",
-    desc: "Common SOP for the operation of accounts in case of an incapacitated investor — applicable to Depositories and Mutual Funds.",
-    href: "/documents/SOP%20-%20Operation%20of%20accounts%20for%20an%20incapacitated%20investor.pdf",
-    size: "271 KB",
-  },
-  {
-    title: "Anti-Money Laundering (PMLA) Policy",
-    desc: "Policy and procedures under the Prevention of Money Laundering Act.",
-    href: "/documents/Anti%20Money%20Laundering%20(PMLA)%20Policy.pdf",
-    size: "353 KB",
-  },
-  {
-    title: "PMS Disclosure Document",
-    desc: "SEBI-mandated disclosure document for Indsec's Portfolio Management Services.",
-    href: "/documents/PMS%20Disclosure%20Document.pdf",
-    size: "400 KB",
-  },
-  {
-    title: "Account Opening Process",
-    desc: "Step-by-step process for opening an account with Indsec.",
-    href: "/documents/Indsec%20-%20Account%20Opening%20Process.pdf",
-    size: "223 KB",
-  },
-];
-
-function docLinkLabel(d: Doc) {
+function docLinkLabel(d: CorporateDocument) {
   const size = d.size ? ` (${d.size})` : "";
   return `View PDF: ${d.title}${size}. Opens in a new tab.`;
 }
 
-export default function InvestorRelationsPage() {
+export default async function InvestorRelationsPage() {
+  const corporateDocs = await getCorporateDocuments();
+
   return (
     <>
       <PageHero kicker="Disclosures & Downloads" title="Disclosure & Compliance" />
@@ -244,9 +218,14 @@ export default function InvestorRelationsPage() {
       {/* Corporate disclosure documents */}
       <section className="section section--band" id="corporate-documents">
         <div className="container">
+          {corporateDocs.length === 0 ? (
+            <p className="lead text-center">
+              Corporate disclosure documents will appear here soon.
+            </p>
+          ) : (
           <div className="grid grid--2">
-            {CORPORATE_DOCS.map((d) => (
-              <article key={d.title} className="card">
+            {corporateDocs.map((d) => (
+              <article key={d._id} className="card">
                 <div
                   className="card__body"
                   style={{ padding: 20, display: "flex", gap: 16, alignItems: "flex-start" }}
@@ -292,7 +271,7 @@ export default function InvestorRelationsPage() {
                         PDF{d.size ? ` · ${d.size}` : ""}
                       </span>
                     </div>
-                    <p className="fs-14 mb-3">{d.desc}</p>
+                    <p className="fs-14 mb-3">{d.description}</p>
                     <a
                       href={d.href}
                       target="_blank"
@@ -307,6 +286,7 @@ export default function InvestorRelationsPage() {
               </article>
             ))}
           </div>
+          )}
         </div>
       </section>
 

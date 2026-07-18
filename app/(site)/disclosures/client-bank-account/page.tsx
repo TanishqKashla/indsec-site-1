@@ -2,34 +2,13 @@ import type { Metadata } from "next";
 import { PageHero } from "@/components/PageHero";
 import { SectionHeading } from "@/components/SectionHeading";
 import { Accordion } from "@/components/Accordion";
+import { getBankAccounts } from "@/lib/bankAccounts";
 
 export const metadata: Metadata = {
   title: "Client Bank Account Details",
   description:
     "Indsec's designated Upstream Client Nodal Bank Accounts (USCNBA) for fund transfers, validated UPI payment guidance and SEBI Check verification.",
 };
-
-type Account = {
-  bankName: string;
-  branch: string;
-  accountNumber: string;
-  ifsc: string;
-};
-
-const ACCOUNTS: Account[] = [
-  {
-    bankName: "ICICI Bank Limited",
-    branch: "215, Free Press House, Free Press Marg, Nariman Point, Mumbai - 400 021",
-    accountNumber: "000405015962",
-    ifsc: "ICIC0000004",
-  },
-  {
-    bankName: "Bank of India",
-    branch: "Stock Exchange, P J Tower, Dalal Street, Fort, Mumbai - 400 023",
-    accountNumber: "008620100009150",
-    ifsc: "BKID0000086",
-  },
-];
 
 const SEBI_CHECK = "https://siportal.sebi.gov.in/intermediary/sebi-check";
 
@@ -85,7 +64,9 @@ const FAQS: { title: string; body: React.ReactNode }[] = [
   },
 ];
 
-export default function ClientBankAccountPage() {
+export default async function ClientBankAccountPage() {
+  const accounts = await getBankAccounts();
+
   return (
     <>
       <PageHero
@@ -115,11 +96,16 @@ export default function ClientBankAccountPage() {
             lead="Stock Broking Activities — Upstream Client Nodal Bank Account (USCNBA)."
             withRule
           />
+          {accounts.length === 0 ? (
+            <p className="lead text-center">
+              Bank account details will appear here soon.
+            </p>
+          ) : (
           <div className="grid grid--2">
-            {ACCOUNTS.map((a) => (
-              <article key={a.accountNumber} className="bank-acct">
+            {accounts.map((a) => (
+              <article key={a._id} className="bank-acct">
                 <div className="bank-acct__head">
-                  <span className="bank-acct__tag">USCNBA Account</span>
+                  <span className="bank-acct__tag">{a.label}</span>
                   <h3 className="bank-acct__name">{a.bankName}</h3>
                 </div>
                 <dl className="bank-acct__rows">
@@ -139,6 +125,7 @@ export default function ClientBankAccountPage() {
               </article>
             ))}
           </div>
+          )}
 
           <div className="bank-callout" role="note">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">

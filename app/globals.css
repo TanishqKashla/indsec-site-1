@@ -2389,6 +2389,51 @@ h2, .section-heading {
   animation-play-state: paused;
 }
 
+/* explicit pause via the accessible play/pause control (WCAG 2.2.2) */
+.logo-marquee.is-paused .logo-marquee__track {
+  animation-play-state: paused;
+}
+
+/* ---- accessible play/pause control -------------------------------------- */
+.logo-marquee__controls {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 18px;
+}
+
+.logo-marquee__toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 5px 12px 5px 10px;
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  background: var(--color-surface);
+  color: var(--color-navy-900);
+  font-size: var(--fs-12);
+  font-weight: var(--fw-semibold);
+  letter-spacing: 0.3px;
+  line-height: 1;
+  cursor: pointer;
+  /* subtle by default; comes forward on hover / focus. 0.75 keeps the navy
+     label above the 4.5:1 AA contrast floor at this size (WCAG 1.4.3). */
+  opacity: 0.75;
+  transition: opacity 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+.logo-marquee__toggle:hover {
+  opacity: 1;
+  border-color: var(--color-navy-900);
+}
+.logo-marquee__toggle:focus-visible {
+  opacity: 1;
+  outline: 2px solid var(--color-navy-900);
+  outline-offset: 2px;
+}
+.logo-marquee__toggle-icon {
+  display: inline-flex;
+  color: var(--color-navy-900);
+}
+
 /* -50% because each track holds the row twice — one full row-width of travel
    lands the duplicate exactly where the original started: a seamless loop */
 @keyframes logo-pan-left {

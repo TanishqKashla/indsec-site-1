@@ -3,8 +3,7 @@ import Image from "next/image";
 import { SectionHeading } from "@/components/SectionHeading";
 import { LinesOfBusinessTabs } from "@/components/LinesOfBusinessTabs";
 import { WeServe } from "@/components/WeServe";
-
-type ClientLogo = { name: string; file: string; dark?: boolean };
+import { LogoMarquee, type ClientLogo } from "@/components/LogoMarquee";
 
 // institutions with logo marks — split across two marquee rows
 const CLIENT_LOGOS: ClientLogo[] = [
@@ -42,40 +41,6 @@ const LOGO_ROWS: ClientLogo[][] = [
   CLIENT_LOGOS.filter((_, i) => i % 2 === 0),
   CLIENT_LOGOS.filter((_, i) => i % 2 === 1),
 ];
-
-function LogoTile({ logo, hidden }: { logo: ClientLogo; hidden?: boolean }) {
-  return (
-    <li
-      className={`logo-tile${logo.dark ? " logo-tile--dark" : ""}`}
-      title={logo.name}
-      aria-hidden={hidden || undefined}
-    >
-      {logo.file.endsWith(".svg") ? (
-        // eslint-disable-next-line @next/next/no-img-element
-        <img
-          src={`/client logos/${logo.file}`}
-          alt={hidden ? "" : logo.name}
-          className="logo-tile__img"
-          // eager, not lazy: tiles pan into view via CSS transform, which does
-          // not reliably trip the lazy-load IntersectionObserver — lazy tiles
-          // would arrive empty
-          loading="eager"
-          style={{ objectFit: "contain", width: 180, height: 56 }}
-        />
-      ) : (
-        <Image
-          src={`/client logos/${logo.file}`}
-          alt={hidden ? "" : logo.name}
-          width={180}
-          height={56}
-          className="logo-tile__img"
-          loading="eager"
-          style={{ objectFit: "contain" }}
-        />
-      )}
-    </li>
-  );
-}
 
 export default function HomePage() {
   return (
@@ -240,26 +205,7 @@ export default function HomePage() {
           {/* Client logos — continuously panning marquee */}
           <div className="logo-section">
             <p className="logo-grid__kicker">Trusted by leading institutions</p>
-            <div className="logo-marquee" role="list" aria-label="Representative clients">
-              {LOGO_ROWS.map((row, ri) => (
-                <div className="logo-marquee__viewport" key={ri}>
-                  <ul
-                    className={`logo-marquee__track logo-marquee__track--${
-                      ri % 2 === 0 ? "ltr" : "rtl"
-                    }`}
-                  >
-                    {/* two copies of the row make a seamless -50% loop; the
-                        duplicate set is hidden from assistive tech */}
-                    {row.map((logo) => (
-                      <LogoTile key={logo.name} logo={logo} />
-                    ))}
-                    {row.map((logo) => (
-                      <LogoTile key={`${logo.name}-dup`} logo={logo} hidden />
-                    ))}
-                  </ul>
-                </div>
-              ))}
-            </div>
+            <LogoMarquee rows={LOGO_ROWS} />
             <p className="fs-12 muted text-center" style={{ marginTop: 16 }}>
               Representative institutional relationships across banks, mutual
               funds, insurers and pension funds. Marks belong to their

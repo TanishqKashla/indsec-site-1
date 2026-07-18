@@ -1,6 +1,10 @@
 import type { Metadata } from "next";
 import { PageHero } from "@/components/PageHero";
 import { SectionHeading } from "@/components/SectionHeading";
+import {
+  getClientRegistrationGroups,
+  type ClientRegistrationDoc,
+} from "@/lib/clientRegistrationDocuments";
 
 export const metadata: Metadata = {
   title: "Client Registration Documents",
@@ -8,114 +12,11 @@ export const metadata: Metadata = {
     "Download Indsec's account opening kits, KYC updation forms, nomination form and rights & obligations documents for broking and depository clients.",
 };
 
-type DocKind = "PDF" | "ZIP" | "Page";
-
-type Doc = {
-  title: string;
-  desc: string;
-  href: string;
-  kind: DocKind;
-  size?: string;
-  external?: boolean;
-};
-
-const GROUPS: { heading: string; lead?: string; docs: Doc[] }[] = [
-  {
-    heading: "Broking — Account Opening",
-    docs: [
-      {
-        title: "Account Opening Kit — Individual",
-        desc: "Complete trading account opening kit for individual broking clients.",
-        href: "/documents/Account%20Opening%20Kit%20-%20Individual.zip",
-        kind: "ZIP",
-        size: "1.4 MB",
-      },
-      {
-        title: "Account Opening Kit — Non-Individual",
-        desc: "Complete trading account opening kit for non-individual / corporate clients.",
-        href: "/documents/Account%20Opening%20Kit%20-%20Non%20Individual.zip",
-        kind: "ZIP",
-        size: "1.9 MB",
-      },
-      {
-        title: "Account Opening (Part B) — Rights & Obligations",
-        desc: "Rights & obligations, risk disclosure and guidance note (Part B), 2024.",
-        href: "/documents/Account%20Opening%20Kit%20(Part%20B)%20-%20Rights%20%26%20Obligations%20-%202024.pdf",
-        kind: "PDF",
-        size: "416 KB",
-      },
-    ],
-  },
-  {
-    heading: "Depository (DP) — Account Opening",
-    docs: [
-      {
-        title: "DP Account Opening Kit — Individual",
-        desc: "Demat (depository participant) account opening kit for individual clients.",
-        href: "/documents/DP%20-%20Account%20Opening%20Kit%20-%20Individual_latest.zip",
-        kind: "ZIP",
-        size: "3.2 MB",
-      },
-      {
-        title: "DP Account Opening Kit — Non-Individual",
-        desc: "Demat (depository participant) account opening kit for non-individual clients.",
-        href: "/documents/DP%20-%20Account%20Opening%20Kit%20-%20Non-Individual.zip",
-        kind: "ZIP",
-        size: "2.6 MB",
-      },
-    ],
-  },
-  {
-    heading: "KYC Updation",
-    docs: [
-      {
-        title: "KYC Updation — Individual",
-        desc: "Form to update / modify KYC details for individual clients.",
-        href: "/documents/KYC%20Modification%20-%20Individual.pdf",
-        kind: "PDF",
-        size: "434 KB",
-      },
-      {
-        title: "KYC Updation — Non-Individual",
-        desc: "Form to update KYC details for non-individual / corporate clients.",
-        href: "/documents/KYC%20Updation%20-%20Non%20Individual.pdf",
-        kind: "PDF",
-        size: "3.3 MB",
-      },
-    ],
-  },
-  {
-    heading: "Nomination",
-    docs: [
-      {
-        title: "Nomination Form — Broking & DP",
-        desc: "Nomination / opt-out declaration form for broking and depository accounts.",
-        href: "/documents/Broking%20and%20DP%20-%20Nomination%20Form.pdf",
-        kind: "PDF",
-        size: "257 KB",
-      },
-    ],
-  },
-  {
-    heading: "Additional Resources",
-    docs: [
-      {
-        title:
-          "Rights & Obligations, RDD & Guidance Note — Vernacular Languages",
-        desc: "Rights & obligations, risk disclosure document and guidance note in regional languages, hosted by NSE.",
-        href: "https://www.nseindia.com/trade/members-client-registration-documents",
-        kind: "Page",
-        external: true,
-      },
-    ],
-  },
-];
-
 /* Accessible name for a document link — declares the document, its file size
    (for downloadable files) and that it opens in a new tab, satisfying WCAG
    G189 (file size hint) and 3.2.2 (new-tab notice). Begins with the visible
    text so it also satisfies WCAG 2.5.3 (Label in Name). */
-function docLinkLabel(d: Doc) {
+function docLinkLabel(d: ClientRegistrationDoc) {
   if (d.kind === "Page") {
     return `Open: ${d.title}. Opens in a new tab.`;
   }
@@ -124,13 +25,15 @@ function docLinkLabel(d: Doc) {
   return `${verb} ${d.kind}: ${d.title}${size}. Opens in a new tab.`;
 }
 
-function actionLabel(d: Doc) {
+function actionLabel(d: ClientRegistrationDoc) {
   if (d.kind === "Page") return "Open";
   if (d.kind === "PDF") return "View PDF";
   return `Download ${d.kind}`;
 }
 
-export default function ClientRegistrationDocumentPage() {
+export default async function ClientRegistrationDocumentPage() {
+  const groups = await getClientRegistrationGroups();
+
   return (
     <>
       <PageHero
@@ -151,16 +54,25 @@ export default function ClientRegistrationDocumentPage() {
       </section>
 
       {/* Document groups */}
-      {GROUPS.map((group, i) => (
+      {groups.length === 0 ? (
+        <section className="section">
+          <div className="container" style={{ maxWidth: 920 }}>
+            <p className="lead text-center">
+              Client registration documents will appear here soon.
+            </p>
+          </div>
+        </section>
+      ) : (
+        groups.map((group, i) => (
         <section
-          key={group.heading}
+          key={group.key}
           className={`section${i % 2 === 1 ? " section--band" : ""}`}
         >
           <div className="container">
-            <SectionHeading title={group.heading} lead={group.lead} withRule />
+            <SectionHeading title={group.label} lead={group.lead} withRule />
             <div className="grid grid--2">
               {group.docs.map((d) => (
-                <article key={d.title} className="card">
+                <article key={d._id} className="card">
                   <div
                     className="card__body"
                     style={{ padding: 20, display: "flex", gap: 16, alignItems: "flex-start" }}
@@ -206,7 +118,7 @@ export default function ClientRegistrationDocumentPage() {
                           {d.kind}{d.size ? ` · ${d.size}` : ""}
                         </span>
                       </div>
-                      <p className="fs-14 mb-3">{d.desc}</p>
+                      <p className="fs-14 mb-3">{d.description}</p>
                       <a
                         href={d.href}
                         target="_blank"
@@ -224,7 +136,8 @@ export default function ClientRegistrationDocumentPage() {
             </div>
           </div>
         </section>
-      ))}
+        ))
+      )}
     </>
   );
 }

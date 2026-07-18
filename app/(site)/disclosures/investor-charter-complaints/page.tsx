@@ -1,6 +1,10 @@
 import type { Metadata } from "next";
 import { PageHero } from "@/components/PageHero";
 import { SectionHeading } from "@/components/SectionHeading";
+import {
+  getInvestorCharterGroups,
+  type InvestorCharterDoc,
+} from "@/lib/investorCharterComplaints";
 
 export const metadata: Metadata = {
   title: "Investor Charters & Complaints Data",
@@ -8,80 +12,18 @@ export const metadata: Metadata = {
     "SEBI-mandated investor charters and monthly investor-complaints data for Indsec's broking, depository and PMS activities.",
 };
 
-type Doc = {
-  title: string;
-  desc: string;
-  href: string;
-  size?: string;
-};
-
-const GROUPS: { heading: string; lead?: string; docs: Doc[] }[] = [
-  {
-    heading: "Investor Charters",
-    lead: "Rights, responsibilities and service standards across each of our SEBI-regulated activities.",
-    docs: [
-      {
-        title: "Investor Charter — Stock Broker",
-        desc: "Rights, responsibilities and service standards for broking clients.",
-        href: "/documents/Investor%20Charter%20for%20Stock%20Brokers_Feb2025.pdf",
-        size: "304 KB",
-      },
-      {
-        title: "Investor Charter — Depository Participant",
-        desc: "Rights, responsibilities and service standards for depository clients.",
-        href: "/documents/Investor%20Charter%20for%20Depositary%20Participants_Sep2024.pdf",
-        size: "415 KB",
-      },
-      {
-        title: "Investor Charter — PMS",
-        desc: "Rights, responsibilities and service standards for Portfolio Management clients.",
-        href: "/documents/Investor%20Charter%20in%20Respect%20of%20PMS_.pdf",
-        size: "247 KB",
-      },
-      {
-        title: "Investor Charter — Research Analyst",
-        desc: "Rights, responsibilities and service standards for research clients.",
-        href: "/documents/Investor%20Charter%20for%20Research%20Analysts.pdf",
-        size: "223 KB",
-      },
-    ],
-  },
-  {
-    heading: "Investor Complaints Data",
-    lead: "Monthly disclosure of investor complaints, as filed with the exchanges and SEBI.",
-    docs: [
-      {
-        title: "Investor Complaints Data — Stock Broking",
-        desc: "Monthly disclosure of complaints received against broking activities (June 2026).",
-        href: "/documents/Investor%20Complaints%20Data%20-%20Stock%20Broking%20Activities%20-%20June%202026.pdf",
-        size: "148 KB",
-      },
-      {
-        title: "Investor Complaints Data — Depository",
-        desc: "Monthly disclosure of complaints received against depository activities (June 2026).",
-        href: "/documents/Investor%20Complaints%20Data%20-%20DP%20Activities%20-%20June%202026.pdf",
-        size: "210 KB",
-      },
-      {
-        title: "Investor Complaints Data — PMS",
-        desc: "Monthly disclosure of complaints received against PMS activities (June 2026).",
-        href: "/documents/Investor%20Complaints%20Data%20-%20PMS%20-%20June%202026.pdf",
-        size: "207 KB",
-      },
-    ],
-  },
-];
-
 /* Accessible name for a document link — declares the document, its file size
    and that it opens in a new tab, satisfying WCAG G189 (file size hint) and
    3.2.2 (new-tab notice). Begins with the visible text so it also satisfies
    WCAG 2.5.3 (Label in Name). */
-function docLinkLabel(d: Doc) {
+function docLinkLabel(d: InvestorCharterDoc) {
   const size = d.size ? ` (${d.size})` : "";
   return `View PDF: ${d.title}${size}. Opens in a new tab.`;
 }
 
-export default function InvestorCharterComplaintsPage() {
+export default async function InvestorCharterComplaintsPage() {
+  const groups = await getInvestorCharterGroups();
+
   return (
     <>
       <PageHero
@@ -102,16 +44,25 @@ export default function InvestorCharterComplaintsPage() {
       </section>
 
       {/* Document groups */}
-      {GROUPS.map((group, i) => (
+      {groups.length === 0 ? (
+        <section className="section">
+          <div className="container" style={{ maxWidth: 920 }}>
+            <p className="lead text-center">
+              Investor charters and complaints data will appear here soon.
+            </p>
+          </div>
+        </section>
+      ) : (
+        groups.map((group, i) => (
         <section
-          key={group.heading}
+          key={group.key}
           className={`section${i % 2 === 1 ? " section--band" : ""}`}
         >
           <div className="container">
-            <SectionHeading title={group.heading} lead={group.lead} withRule />
+            <SectionHeading title={group.label} lead={group.lead} withRule />
             <div className="grid grid--2">
               {group.docs.map((d) => (
-                <article key={d.title} className="card">
+                <article key={d._id} className="card">
                   <div
                     className="card__body"
                     style={{ padding: 20, display: "flex", gap: 16, alignItems: "flex-start" }}
@@ -157,7 +108,7 @@ export default function InvestorCharterComplaintsPage() {
                           PDF{d.size ? ` · ${d.size}` : ""}
                         </span>
                       </div>
-                      <p className="fs-14 mb-3">{d.desc}</p>
+                      <p className="fs-14 mb-3">{d.description}</p>
                       <a
                         href={d.href}
                         target="_blank"
@@ -174,7 +125,8 @@ export default function InvestorCharterComplaintsPage() {
             </div>
           </div>
         </section>
-      ))}
+        ))
+      )}
     </>
   );
 }

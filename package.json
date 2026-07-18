@@ -6,7 +6,12 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "seed:corporate-disclosure": "node scripts/seed-corporate-disclosure.mjs",
+    "seed:investor-charter-complaints": "node scripts/seed-investor-charter-complaints.mjs",
+    "seed:client-registration-document": "node scripts/seed-client-registration-document.mjs",
+    "seed:bank-accounts": "node scripts/seed-bank-accounts.mjs",
+    "seed:investor-awareness-videos": "node scripts/seed-investor-awareness-videos.mjs"
   },
   "dependencies": {
     "@sanity/vision": "^3.99.0",

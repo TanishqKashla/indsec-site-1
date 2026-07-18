@@ -1,3 +1,4 @@
+import Script from "next/script";
 import "../globals.css";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
@@ -21,6 +22,9 @@ export default function SiteLayout({
       <main id="main">{children}</main>
       <Footer />
       <MandatoryDisclosure />
+      {/* EnableUser accessibility widget — themed to the site navy (#1B2A5E).
+          Colour is baked into the file, so it self-initialises on load. */}
+      <Script src="/enablestack-widget.js" strategy="afterInteractive" />
     </>
   );
 }
