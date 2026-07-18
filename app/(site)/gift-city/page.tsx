@@ -101,7 +101,7 @@ export default function GiftCityPage() {
       </section>
 
       {/* CTA */}
-      <section className="section section--navy">
+      <section className="section section--skyline">
         <div className="container text-center">
           <h2 style={{ color: "#fff", marginBottom: 12 }}>Invest in India through GIFT City</h2>
           <p className="lead" style={{ color: "rgba(255,255,255,0.9)", maxWidth: 720, margin: "0 auto 24px" }}>

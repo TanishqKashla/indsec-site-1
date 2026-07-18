@@ -229,7 +229,7 @@ export default function LinesOfBusinessPage() {
       </section>
 
       {/* CTA */}
-      <section className="section section--navy">
+      <section className="section section--skyline">
         <div className="container text-center">
           <h2 style={{ color: "#fff", marginBottom: 12 }}>
             Not sure which desk you need?

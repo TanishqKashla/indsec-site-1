@@ -179,6 +179,24 @@ h2, .section-heading {
 .section--navy h2,
 .section--navy .section-heading { color: #FFFFFF; }
 
+/* Closing CTA band over the shared city-skyline photo — same darkened brand
+   wash as the page headers, so the high-rise backdrop ties the two ends of a
+   page together while white text stays well above contrast minimums. */
+.section--skyline {
+  position: relative;
+  background:
+    linear-gradient(
+      135deg,
+      rgba(27, 42, 94, 0.90) 0%,
+      rgba(110, 15, 18, 0.86) 60%,
+      rgba(156, 27, 31, 0.84) 100%
+    ),
+    url("/hero-skyline.jpg") center 45% / cover no-repeat;
+  color: #FFFFFF;
+}
+.section--skyline h2,
+.section--skyline .section-heading { color: #FFFFFF; }
+
 .section__lead {
   max-width: 780px;
   margin: 16px auto 48px;
@@ -665,7 +683,17 @@ h2, .section-heading {
 .hero {
   position: relative;
   min-height: 440px;
-  background: var(--gradient-navy-crimson);
+  /* Brand gradient laid over a shared city-skyline photo: every page header
+     gets the same subtle high-rise backdrop while the strong navy→crimson
+     wash keeps white text well above contrast minimums. */
+  background:
+    linear-gradient(
+      135deg,
+      rgba(27, 42, 94, 0.90) 0%,
+      rgba(110, 15, 18, 0.86) 60%,
+      rgba(156, 27, 31, 0.84) 100%
+    ),
+    url("/hero-skyline.jpg") center 35% / cover no-repeat;
   overflow: hidden;
   display: flex;
   align-items: center;
@@ -2638,8 +2666,18 @@ h2, .section-heading {
    ========================================================================== */
 
 @media (max-width: 600px) {
-  /* shift the hero gradient to be more crimson-dominant on phones */
-  .hero { background: linear-gradient(160deg, #1B2A5E 0%, #6E0F12 45%, #9C1B1F 100%); }
+  /* shift the hero wash to be more crimson-dominant on phones; keep the
+     skyline photo behind it, a touch stronger so CTAs read clearly */
+  .hero {
+    background:
+      linear-gradient(
+        160deg,
+        rgba(27, 42, 94, 0.93) 0%,
+        rgba(110, 15, 18, 0.90) 45%,
+        rgba(156, 27, 31, 0.88) 100%
+      ),
+      url("/hero-skyline.jpg") center 35% / cover no-repeat;
+  }
 
   /* crimson panel behind the hero call-to-action buttons */
   .hero__cta {
