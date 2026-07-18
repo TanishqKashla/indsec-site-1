@@ -1,15 +1,18 @@
 import Link from "next/link";
 import { Logo } from "./Logo";
 
-const COMPANY = [
+type FooterLink = { href: string; label: string; ariaLabel?: string };
+
+const COMPANY: FooterLink[] = [
   { href: "/about", label: "About Us" },
   { href: "/about#history", label: "Company History" },
   { href: "/about#team", label: "Board of Directors" },
   { href: "/lines-of-business", label: "Lines of Business" },
-  { href: "/research", label: "Research" },
+  // Accessible name kept consistent with the "Access Research" CTAs (WCAG 3.2.4)
+  { href: "/research", label: "Research", ariaLabel: "Access Research" },
 ];
 
-const SERVICES = [
+const SERVICES: FooterLink[] = [
   { href: "/institutional-broking", label: "Institutional Broking" },
   { href: "/family-office", label: "Family Office" },
   { href: "/gift-city", label: "GIFT City / PMS" },
@@ -52,12 +55,12 @@ export function Footer() {
               href={LINKEDIN_URL}
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="Indsec on LinkedIn"
             >
               <svg viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14zM8.34 17v-6.7H6.1V17h2.24zM7.22 9.31a1.3 1.3 0 1 0 0-2.6 1.3 1.3 0 0 0 0 2.6zM18 17v-3.67c0-1.96-.42-3.47-2.71-3.47-1.1 0-1.84.6-2.14 1.18h-.03V10.3H10.9V17h2.23v-3.31c0-.87.17-1.72 1.25-1.72 1.07 0 1.08 1 1.08 1.78V17H18z" />
               </svg>
-              <span>Follow on LinkedIn</span>
+              <span>Follow Indsec on LinkedIn</span>
+              <span className="visually-hidden"> (opens in a new tab)</span>
             </a>
           </div>
 
@@ -65,7 +68,7 @@ export function Footer() {
             <h3 className="footer__title">Company</h3>
             <ul className="footer__links">
               {COMPANY.map((l) => (
-                <li key={l.href}><Link href={l.href}>{l.label}</Link></li>
+                <li key={l.href}><Link href={l.href} aria-label={l.ariaLabel}>{l.label}</Link></li>
               ))}
             </ul>
           </nav>
@@ -82,10 +85,14 @@ export function Footer() {
           <div className="footer__col">
             <h3 className="footer__title">Get in Touch</h3>
             <ul className="footer__links">
-              <li><Link href="/contact">Contact Us</Link></li>
+              <li><Link href="/contact">Speak to Our Desk</Link></li>
               <li><Link href="/important-links">Important Links</Link></li>
             </ul>
-            <a className="footer__cta" href="mailto:isfl_invgrv@indsec.co.in">
+            <a
+              className="footer__cta"
+              href="mailto:isfl_invgrv@indsec.co.in"
+              aria-label="Investor Grievances isfl_invgrv@indsec.co.in"
+            >
               Investor Grievances
               <span className="footer__cta-mail">isfl_invgrv@indsec.co.in</span>
             </a>
@@ -126,7 +133,7 @@ export function Footer() {
         {/* ---- Bottom bar ---- */}
         <div className="footer__bottom">
           <nav className="footer__legal-links" aria-label="Legal">
-            <Link href="/disclosures">Regulatory Disclosure</Link>
+            <Link href="/disclosures">Disclosures</Link>
             <Link href="/important-links#grievance">Grievance Redressal</Link>
             <Link href="/important-links">Important Links</Link>
           </nav>

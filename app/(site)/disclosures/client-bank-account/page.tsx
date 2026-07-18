@@ -190,7 +190,7 @@ export default async function ClientBankAccountPage() {
         <div className="container" style={{ maxWidth: 920 }}>
           <p className="fs-14 text-center" style={{ color: "var(--color-text)" }}>
             For investor grievances, write to us at{" "}
-            <a href="mailto:isfl_invgrv@indsec.co.in">isfl_invgrv@indsec.co.in</a>{" "}
+            <a href="mailto:isfl_invgrv@indsec.co.in" aria-label="Investor Grievances isfl_invgrv@indsec.co.in">isfl_invgrv@indsec.co.in</a>{" "}
             or lodge a complaint on the SEBI{" "}
             <a href="https://scores.sebi.gov.in/" target="_blank" rel="noopener noreferrer">
               SCORES portal ↗

@@ -71,7 +71,6 @@ export default function EVotingPage() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="link-card evoting-card"
-                aria-label={`${l.label}. Opens in a new tab.`}
               >
                 <span className="link-card__arrow" aria-hidden="true">↗</span>
                 <span className="evoting-card__logo">
@@ -79,6 +78,7 @@ export default function EVotingPage() {
                 </span>
                 <h3 className="link-card__title">{l.label}</h3>
                 <p className="link-card__desc">{l.href}</p>
+                <span className="visually-hidden"> (opens in a new tab)</span>
               </a>
             ))}
           </div>
@@ -90,7 +90,8 @@ export default function EVotingPage() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              click here
+              log in to NSDL eServices
+              <span className="visually-hidden"> (opens in a new tab)</span>
             </a>{" "}
             to participate in E-Voting.
           </p>

@@ -9,6 +9,12 @@ type NavChild = { href: string; label: string; desc?: string };
 type NavItem = {
   href: string;
   label: string;
+  /**
+   * Accessible name override. Used to keep the accessible name of a link
+   * consistent with the same destination elsewhere on the site (WCAG 3.2.4).
+   * e.g. the "Research" nav item matches the "Access Research" CTAs.
+   */
+  ariaLabel?: string;
   children?: NavChild[];
 };
 
@@ -34,6 +40,7 @@ const NAV: NavItem[] = [
   {
     href: "/research",
     label: "Research",
+    ariaLabel: "Access Research",
   },
   {
     href: "/disclosures",
@@ -98,6 +105,7 @@ export function Header() {
                 <Link
                   href={item.href}
                   className="navbar__link"
+                  aria-label={item.ariaLabel}
                   aria-current={active ? "page" : undefined}
                   aria-haspopup={hasChildren || undefined}
                   aria-expanded={hasChildren ? expanded : undefined}
@@ -109,7 +117,11 @@ export function Header() {
                 >
                   {item.label}
                   {hasChildren && (
-                    <span aria-hidden="true" className="navbar__caret">▾</span>
+                    <span aria-hidden="true" className="navbar__caret">
+                      <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="m6 9 6 6 6-6" />
+                      </svg>
+                    </span>
                   )}
                 </Link>
 
@@ -131,7 +143,10 @@ export function Header() {
                           >
                             <span className="navbar__menu-title">{c.label}</span>
                             {c.desc && (
-                              <span className="navbar__menu-desc">{c.desc}</span>
+                              // Supplementary visual copy only. Kept out of the link's
+                              // accessible name (aria-hidden) so it stays consistent with
+                              // the same destination in the footer/cards (WCAG 3.2.4).
+                              <span className="navbar__menu-desc" aria-hidden="true">{c.desc}</span>
                             )}
                           </Link>
                         </li>
@@ -145,7 +160,7 @@ export function Header() {
         </ul>
 
         <div className="navbar__right">
-          <Link href="/contact" className="navbar__contact btn btn--ghost-white" aria-label="Contact us">
+          <Link href="/contact" className="navbar__contact btn btn--ghost-white" aria-label="Speak to Our Desk">
             <svg
               className="navbar__contact-icon"
               viewBox="0 0 24 24"
@@ -156,7 +171,7 @@ export function Header() {
             >
               <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z" />
             </svg>
-            <span className="navbar__contact-label">Contact</span>
+            <span className="navbar__contact-label">Speak to Our Desk</span>
           </Link>
 
           <button

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { PageHero } from "@/components/PageHero";
 import { SectionHeading } from "@/components/SectionHeading";
+import { ArrowIcon } from "@/components/ArrowIcon";
 
 export const metadata: Metadata = {
   title: "Lines of Business",
@@ -165,7 +166,7 @@ export default function LinesOfBusinessPage() {
                 </div>
 
                 <Link href={l.href} className="btn btn--crimson">
-                  Explore →
+                  {l.label} <ArrowIcon />
                 </Link>
               </article>
             ))}

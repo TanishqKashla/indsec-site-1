@@ -5,18 +5,20 @@ import Image from "next/image";
 
 export type ClientLogo = { name: string; file: string; dark?: boolean };
 
-function LogoTile({ logo, hidden }: { logo: ClientLogo; hidden?: boolean }) {
+function LogoTile({ logo }: { logo: ClientLogo }) {
+  // Marks are purely decorative here — the whole strip is a "representative
+  // clients" branding wall (see the caption). It is hidden from assistive tech
+  // via aria-hidden on the marquee container, so every logo carries alt="".
   return (
     <li
       className={`logo-tile${logo.dark ? " logo-tile--dark" : ""}`}
       title={logo.name}
-      aria-hidden={hidden || undefined}
     >
       {logo.file.endsWith(".svg") ? (
         // eslint-disable-next-line @next/next/no-img-element
         <img
           src={`/client logos/${logo.file}`}
-          alt={hidden ? "" : logo.name}
+          alt=""
           className="logo-tile__img"
           // eager, not lazy: tiles pan into view via CSS transform, which does
           // not reliably trip the lazy-load IntersectionObserver — lazy tiles
@@ -27,7 +29,7 @@ function LogoTile({ logo, hidden }: { logo: ClientLogo; hidden?: boolean }) {
       ) : (
         <Image
           src={`/client logos/${logo.file}`}
-          alt={hidden ? "" : logo.name}
+          alt=""
           width={180}
           height={56}
           className="logo-tile__img"
@@ -81,10 +83,12 @@ export function LogoMarquee({ rows }: { rows: ClientLogo[][] }) {
         </button>
       </div>
 
+      {/* The panning strip is decorative branding — hidden from assistive tech.
+          The visible pause control above stays operable for motion (WCAG 2.2.2),
+          and the surrounding kicker/caption text describes it for AT users. */}
       <div
         className={`logo-marquee${paused ? " is-paused" : ""}`}
-        role="list"
-        aria-label="Representative clients"
+        aria-hidden="true"
       >
         {rows.map((row, ri) => (
           <div className="logo-marquee__viewport" key={ri}>
@@ -99,7 +103,7 @@ export function LogoMarquee({ rows }: { rows: ClientLogo[][] }) {
                 <LogoTile key={logo.name} logo={logo} />
               ))}
               {row.map((logo) => (
-                <LogoTile key={`${logo.name}-dup`} logo={logo} hidden />
+                <LogoTile key={`${logo.name}-dup`} logo={logo} />
               ))}
             </ul>
           </div>

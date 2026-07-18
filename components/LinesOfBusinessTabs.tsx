@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useState, type ReactNode } from "react";
+import { ArrowIcon } from "./ArrowIcon";
 
 const svgProps = {
   width: 18,
@@ -101,7 +102,7 @@ export function LinesOfBusinessTabs() {
       <div role="tabpanel" className="tabs__panel" aria-label={item.title}>
         <h3 className="tabs__panel-title">{item.title}</h3>
         <p className="tabs__panel-text">{item.text}</p>
-        <Link href={item.href} className="btn btn--white">Explore Now</Link>
+        <Link href={item.href} className="btn btn--white">{item.label} <ArrowIcon /></Link>
       </div>
     </div>
   );

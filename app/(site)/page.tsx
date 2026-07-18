@@ -4,6 +4,7 @@ import { SectionHeading } from "@/components/SectionHeading";
 import { LinesOfBusinessTabs } from "@/components/LinesOfBusinessTabs";
 import { WeServe } from "@/components/WeServe";
 import { LogoMarquee, type ClientLogo } from "@/components/LogoMarquee";
+import { ArrowIcon } from "@/components/ArrowIcon";
 
 // institutions with logo marks — split across two marquee rows
 const CLIENT_LOGOS: ClientLogo[] = [
@@ -78,7 +79,7 @@ export default function HomePage() {
                 Speak to Our Desk
               </Link>
               <Link href="/research" className="btn btn--ghost-white hero-home__ghost">
-                Access Research <span aria-hidden="true">→</span>
+                Access Research <ArrowIcon />
               </Link>
             </div>
 
@@ -218,24 +219,24 @@ export default function HomePage() {
       {/* ------------------------------------------------------------------ Stats / trust */}
       <section className="section">
         <div className="container">
-          <div className="stats">
-            <div>
-              <div className="stats__num">1993</div>
-              <div className="stats__label">Incorporated</div>
+          <dl className="stats">
+            <div className="stats__item">
+              <dt className="stats__label">Incorporated</dt>
+              <dd className="stats__num">1993</dd>
             </div>
-            <div>
-              <div className="stats__num">25+</div>
-              <div className="stats__label">Years on the exchange</div>
+            <div className="stats__item">
+              <dt className="stats__label">Years on the exchange</dt>
+              <dd className="stats__num">25+</dd>
             </div>
-            <div>
-              <div className="stats__num">NSE · BSE</div>
-              <div className="stats__label">Member</div>
+            <div className="stats__item">
+              <dt className="stats__label">Member</dt>
+              <dd className="stats__num">NSE · BSE</dd>
             </div>
-            <div>
-              <div className="stats__num">SEBI</div>
-              <div className="stats__label">Registered &amp; compliant</div>
+            <div className="stats__item">
+              <dt className="stats__label">Registered &amp; compliant</dt>
+              <dd className="stats__num">SEBI</dd>
             </div>
-          </div>
+          </dl>
         </div>
       </section>
 

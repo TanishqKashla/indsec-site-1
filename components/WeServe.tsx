@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { ArrowIcon } from "./ArrowIcon";
 
 /* "We Serve" — two client categories. Each card opens a pop-up listing the
    clients in that category. The lists are maintained here and are expected to
@@ -234,7 +235,7 @@ export function WeServe() {
               <h3 className="title-h4" style={{ color: "var(--color-navy-900)" }}>{c.title}</h3>
               <p className="fs-14 muted" style={{ marginTop: 4 }}>({c.abbr})</p>
               <span className="serve-card__hint">
-                View client list <span aria-hidden="true">→</span>
+                View client list <ArrowIcon />
               </span>
             </button>
           </article>

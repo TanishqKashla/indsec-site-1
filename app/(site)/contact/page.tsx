@@ -35,7 +35,7 @@ export default function ContactPage() {
                 <div><dt>Fax</dt><dd>+91 22 6710 6874</dd></div>
                 <div><dt>Email</dt><dd><a href="mailto:isfl@indsec.co.in">isfl@indsec.co.in</a></dd></div>
                 <div><dt>Bloomberg ID</dt><dd>iindsec@bloomberg.net</dd></div>
-                <div><dt>Investor Grievances</dt><dd><a href="mailto:isfl_invgrv@indsec.co.in">isfl_invgrv@indsec.co.in</a></dd></div>
+                <div><dt>Investor Grievances</dt><dd><a href="mailto:isfl_invgrv@indsec.co.in" aria-label="Investor Grievances isfl_invgrv@indsec.co.in">isfl_invgrv@indsec.co.in</a></dd></div>
               </dl>
             </div>
 

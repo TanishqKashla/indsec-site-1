@@ -3,6 +3,7 @@ import Link from "next/link";
 import { PageHero } from "@/components/PageHero";
 import { SectionHeading } from "@/components/SectionHeading";
 import { ReportsExplorer } from "@/components/ReportsExplorer";
+import { ArrowIcon } from "@/components/ArrowIcon";
 import { getAllReports } from "@/lib/reports";
 
 export const metadata: Metadata = {
@@ -58,7 +59,7 @@ export default async function ResearchPage() {
                 <Link href={RESEARCH_DISCLOSURES}>
                   Research Disclaimer &amp; Disclosures →
                 </Link>{" "}
-                · <Link href="/disclosures">All disclosures →</Link>
+                · <Link href="/disclosures">Disclosures <ArrowIcon /></Link>
               </p>
             </div>
           </div>

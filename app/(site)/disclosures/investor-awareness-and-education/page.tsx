@@ -17,8 +17,8 @@ function VideoCard({ video, source }: { video: Video; source: string }) {
       href={`https://www.youtube.com/watch?v=${video.id}`}
       target="_blank"
       rel="noopener noreferrer"
-      aria-label={`Watch on YouTube: ${video.title}. Opens in a new tab.`}
     >
+      <span className="visually-hidden">Watch on YouTube (opens in a new tab): </span>
       <span className="video-card__thumb">
         <Image
           src={`https://i.ytimg.com/vi/${video.id}/hqdefault.jpg`}

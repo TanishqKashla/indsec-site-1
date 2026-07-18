@@ -132,7 +132,7 @@ export default function FamilyOfficePage() {
           <p className="lead" style={{ color: "rgba(255,255,255,0.9)", maxWidth: 720, margin: "0 auto 24px" }}>
             Speak to our Family Office partners for a confidential introductory conversation.
           </p>
-          <Link href="/contact" className="btn btn--white">Request a Conversation</Link>
+          <Link href="/contact" className="btn btn--white">Speak to Our Desk</Link>
         </div>
       </section>
     </>

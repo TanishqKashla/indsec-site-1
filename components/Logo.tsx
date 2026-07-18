@@ -11,16 +11,23 @@ const RATIO = 1135 / 1386; // intrinsic width / height of the logo artwork
 type Props = {
   mode?: "light" | "dark"; // kept for API compatibility with existing callers
   size?: number; // visual height of the white panel in px
+  /**
+   * Accessible name for the logo. Defaults to "" (decorative): every current
+   * caller is already labelled by its context — the header link announces
+   * "Indsec home" and the footer carries the company name in its copyright —
+   * so the mark is decorative and must not double-announce "Indsec". Pass an
+   * explicit alt if the logo ever stands alone as the sole brand identifier.
+   */
+  alt?: string;
 };
 
-export function Logo({ size = 56 }: Props) {
+export function Logo({ size = 56, alt = "" }: Props) {
   const pad = Math.round(size * 0.08);
   const innerH = size - pad * 2;
   const innerW = Math.round(innerH * RATIO);
 
   return (
     <span
-      aria-label="Indsec"
       style={{
         display: "inline-flex",
         alignItems: "center",
@@ -37,7 +44,7 @@ export function Logo({ size = 56 }: Props) {
     >
       <Image
         src={whiteLogo}
-        alt="Indsec"
+        alt={alt}
         height={innerH}
         width={innerW}
         style={{ height: innerH, width: "auto", display: "block" }}

@@ -36,11 +36,11 @@ function LinkGrid({ items }: { items: LinkItem[] }) {
           target="_blank"
           rel="noopener noreferrer"
           className="link-card"
-          aria-label={`${l.label}. Opens in a new tab.`}
         >
           <span className="link-card__arrow" aria-hidden="true">↗</span>
           <h3 className="link-card__title">{l.label}</h3>
           <p className="link-card__desc">{l.href}</p>
+          <span className="visually-hidden"> (opens in a new tab)</span>
         </a>
       ))}
     </div>

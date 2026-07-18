@@ -107,7 +107,7 @@ export default function GiftCityPage() {
           <p className="lead" style={{ color: "rgba(255,255,255,0.9)", maxWidth: 720, margin: "0 auto 24px" }}>
             Tell us about your residency and mandate — we'll map the cleanest route.
           </p>
-          <Link href="/contact" className="btn btn--white">Talk to GIFT City Desk</Link>
+          <Link href="/contact" className="btn btn--white">Speak to Our Desk</Link>
         </div>
       </section>
     </>
