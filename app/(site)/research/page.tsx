@@ -1,10 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { PageHero } from "@/components/PageHero";
-import { SectionHeading } from "@/components/SectionHeading";
-import { ReportsExplorer } from "@/components/ReportsExplorer";
 import { ArrowIcon } from "@/components/ArrowIcon";
-import { getAllReports } from "@/lib/reports";
 
 export const metadata: Metadata = {
   title: "Research & Reports",
@@ -14,9 +11,38 @@ export const metadata: Metadata = {
 
 const RESEARCH_DISCLOSURES = "/disclosures/research-disclaimer-and-disclosures";
 
-export default async function ResearchPage() {
-  const reports = await getAllReports();
+const RESEARCH_DELIVERABLES = [
+  {
+    title: "Daily",
+    items: ["The Opening Bell", "Morning Market Tracker", "Nifty Technical Edge"],
+  },
+  {
+    title: "Monthly",
+    items: [
+      "Techno-Funda",
+      "Banking Sector Insights",
+      "Premium Pulse",
+      "AMFI Monthly Digest",
+      "Metal Momentum",
+      "Cement Pulse",
+      "Auto Sales Volume Tracker",
+    ],
+  },
+  {
+    title: "Quarterly",
+    items: ["Earnings Preview", "Result Update", "Result Summary"],
+  },
+  {
+    title: "Alpha Insights",
+    items: ["IPO Meet Note", "Initiating Coverage", "Thematic Report"],
+  },
+  {
+    title: "Strategy Reports",
+    items: ["Budget Report", "FPI Ownership Trends"],
+  },
+];
 
+export default async function ResearchPage() {
   return (
     <>
       <PageHero kicker="Research" title="Quality over quantity, conviction over noise" />
@@ -33,15 +59,36 @@ export default async function ResearchPage() {
         </div>
       </section>
 
-      {/* Reports library */}
-      <section className="section section--band" id="reports">
+      {/* Research deliverables */}
+      <section className="section section--band">
         <div className="container">
-          <SectionHeading
-            title="Reports Library"
-            lead="Browse our publicly available research by category. Open any report to read it on-site or download the PDF."
-            withRule
-          />
-          <ReportsExplorer reports={reports} />
+          <div className="section-heading section-heading--center" style={{ marginBottom: 24 }}>
+            <h2 className="section-heading__title">Our Research Team Deliverables</h2>
+            <p className="section-heading__lead">
+              A quick snapshot of the research notes and reports we publish across daily,
+              monthly, quarterly and thematic coverage themes.
+            </p>
+          </div>
+
+          <div className="deliverables__grid">
+            {RESEARCH_DELIVERABLES.map((group) => (
+              <article key={group.title} className="deliverables__card">
+                <h3 className="deliverables__title">{group.title}</h3>
+                <ul className="deliverables__list">
+                  {group.items.map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ul>
+              </article>
+            ))}
+          </div>
+
+          <div className="deliverables__cta">
+            <p>
+              In order to receive the above reports on your email, please drop in an email at{" "}
+              <a href="mailto:query_research@indsec.co.in">query_research@indsec.co.in</a>.
+            </p>
+          </div>
         </div>
       </section>
 
