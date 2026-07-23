@@ -18,14 +18,9 @@ const RESEARCH_DELIVERABLES = [
   },
   {
     title: "Monthly",
-    items: [
-      "Techno-Funda",
-      "Banking Sector Insights",
-      "Premium Pulse",
-      "AMFI Monthly Digest",
-      "Metal Momentum",
-      "Cement Pulse",
-      "Auto Sales Volume Tracker",
+    columns: [
+      ["Techno-Funda", "Banking Sector Insights", "Premium Pulse"],
+      ["AMFI Monthly Digest", "Metal Momentum", "Cement Pulse", "Auto Sales Volume Tracker"],
     ],
   },
   {
@@ -50,7 +45,7 @@ export default async function ResearchPage() {
       {/* Intro */}
       <section className="section">
         <div className="container" style={{ maxWidth: 920 }}>
-          <p className="lead text-center">
+          <p className="lead text-center research-intro__text">
             Indsec research is built for institutional decision-making. We cover
             the sectors that move portfolios deeply. Every note is back-stopped
             by primary channel checks, management access and our trading desk&apos;s
@@ -64,7 +59,7 @@ export default async function ResearchPage() {
         <div className="container">
           <div className="section-heading section-heading--center" style={{ marginBottom: 24 }}>
             <h2 className="section-heading__title">Our Research Team Deliverables</h2>
-            <p className="section-heading__lead">
+            <p className="section-heading__lead research-section__lead">
               A quick snapshot of the research notes and reports we publish across daily,
               monthly, quarterly and thematic coverage themes.
             </p>
@@ -73,12 +68,27 @@ export default async function ResearchPage() {
           <div className="deliverables__grid">
             {RESEARCH_DELIVERABLES.map((group) => (
               <article key={group.title} className="deliverables__card">
-                <h3 className="deliverables__title">{group.title}</h3>
-                <ul className="deliverables__list">
-                  {group.items.map((item) => (
-                    <li key={item}>{item}</li>
-                  ))}
-                </ul>
+                <div className="deliverables__header">
+                  <h3 className="deliverables__title">{group.title}</h3>
+                </div>
+
+                {group.columns ? (
+                  <div className="deliverables__columns">
+                    {group.columns.map((column, index) => (
+                      <ul key={`${group.title}-${index}`} className="deliverables__list">
+                        {column.map((item) => (
+                          <li key={item}>{item}</li>
+                        ))}
+                      </ul>
+                    ))}
+                  </div>
+                ) : (
+                  <ul className="deliverables__list">
+                    {group.items?.map((item) => (
+                      <li key={item}>{item}</li>
+                    ))}
+                  </ul>
+                )}
               </article>
             ))}
           </div>
