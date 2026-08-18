@@ -72,7 +72,7 @@ export default function ContactPage() {
                       href="/documents/Indsec%20-%20Escalation%20Matrix.pdf"
                       target="_blank"
                       rel="noopener noreferrer"
-                      aria-label="View PDF: Escalation Matrix (233 KB). Opens in a new tab."
+                      aria-label="View PDF: Escalation Matrix (133 KB). Opens in a new tab."
                     >
                       View PDF <span aria-hidden="true">↗</span>
                     </a>
