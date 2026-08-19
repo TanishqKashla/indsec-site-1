@@ -69,7 +69,7 @@ export default function ContactPage() {
                   <p className="pillar__text">
                     Designated contacts and escalation levels for investor grievances.<br />
                     <a
-                      href="/documents/Indsec%20-%20Escalation%20Matrix.pdf"
+                      href="/documents/Indsec%20-%20Escalation%20Matrix.pdf?v=2026-08-19"
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label="View PDF: Escalation Matrix (133 KB). Opens in a new tab."
